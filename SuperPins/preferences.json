@@ -180,6 +180,12 @@
         "disabledOn": []
     },
     {
+        "property": "mod.superpins.pins.sticky-bg",
+        "label": "Select the background of pins when they stay at the top",
+        "type": "string",
+        "disabledOn": []
+    },
+    {
         "property": "uc.pins.active-bg",
         "label": "Adds a custom background to active pinned tabs",
         "type": "checkbox",
