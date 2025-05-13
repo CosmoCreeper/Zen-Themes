@@ -94,25 +94,22 @@
         ]
     },
     {
-        "property": "uc.superpins.border",
-        "label": "Add a border around Pins/Essentials",
-        "type": "dropdown",
-        "placeholder": "Disabled",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Pins only",
-                "value": "pins"
-            },
-            {
-                "label": "Essentials only",
-                "value": "essentials"
-            },
-            {
-                "label": "Pins + Essentials",
-                "value": "both"
-            }
-        ]
+        "property": "uc.pins.border",
+        "label": "Adds a border around Pins",
+        "type": "checkbox",
+        "disabledOn": []
+    },
+    {
+        "property": "uc.essentials.border",
+        "label": "Adds a border around Essentials",
+        "type": "checkbox",
+        "disabledOn": []
+    },
+    {
+        "property": "uc.tabs.border",
+        "label": "Adds a border around normal tabs",
+        "type": "checkbox",
+        "disabledOn": []
     },
     {
         "property": "uc.pins.legacy-layout",
