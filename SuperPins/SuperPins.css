@@ -292,8 +292,8 @@
         }
     }
 
-    /* Adds border to Pins/Essentials (when toggled) */
-    :root:has(#theme-SuperPins[uc-superpins-border="essentials"]) {
+    /* Adds border to Pins/Essentials/Normal (when enabled) */
+    @media (-moz-bool-pref: "uc.essentials.border") {
         #zen-essentials-container, .zen-essentials-container {
             & .tabbrowser-tab[zen-essential="true"] .tab-stack .tab-background {
                 border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
@@ -302,15 +302,15 @@
         }
     }
 
-    :root:has(#theme-SuperPins[uc-superpins-border="pins"]) {
+    @media (-moz-bool-pref: "uc.pins.border") {
         .tabbrowser-tab[pinned]:not([zen-essential="true"]) .tab-stack .tab-background, #vertical-pinned-tabs-container>.zen-workspace-tabs-section tab-group {
             border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
                     color-mix(in srgb, var(--zen-colors-secondary) 80%, white)) !important;
         }
     }
 
-    :root:has(#theme-SuperPins[uc-superpins-border="both"]) {
-        .tabbrowser-tab[pinned] .tab-stack .tab-background, #vertical-pinned-tabs-container>.zen-workspace-tabs-section tab-group {
+    @media (-moz-bool-pref: "uc.tabs.border") {
+        .zen-workspace-normal-tabs-section .tabbrowser-tab .tab-stack .tab-background, .zen-workspace-normal-tabs-section tab-group {
             border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
                     color-mix(in srgb, var(--zen-colors-secondary) 80%, white)) !important;
         }
