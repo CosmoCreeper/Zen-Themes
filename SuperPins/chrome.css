@@ -195,6 +195,10 @@
                 }
             }
         }
+
+        .zen-workspace-pinned-tabs-section > tab > stack > hbox > stack {
+			justify-content: center;
+		 }	
     }
 
     /* Make Essentials look more box like */
