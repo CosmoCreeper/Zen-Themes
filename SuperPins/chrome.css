@@ -241,20 +241,24 @@
 
     /* Puts Essentials at the bottom */
     :has(#theme-SuperPins[uc-essentials-position="bottom"]) {
-        #zen-essentials-container, #zen-essentials-wrapper, #zen-essentials {
-            order: 999 !important;
-            margin-top: auto !important;
-            padding-top: 5px !important;
-            padding-bottom: 4px !important;
-        }
-
         .zen-essentials-container {
             position: relative !important;
-            min-width: 100% !important;
+            margin-top: auto !important;
         }
 
-        .zen-current-workspace-indicator, #zen-tabs-wrapper {
-            margin-top: 0 !important;
+        #zen-essentials {
+            order: 999 !important;
+        }
+
+        #tabbrowser-arrowscrollbox > zen-workspace {
+            padding-top: 0 !important;
+        }
+
+        #navigator-toolbox[zen-sidebar-expanded="true"] {
+            .zen-essentials-container {
+                min-width: 100% !important;
+                width: 100% !important;
+            }
         }
     }
 
