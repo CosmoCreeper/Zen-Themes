@@ -1,7 +1,8 @@
 @media (-moz-bool-pref: "zen.tabs.vertical") {
 
     /* Prevents stuff from being clipped off from bottom of Essentials */
-    #zen-essentials-container, .zen-essentials-container {
+    #zen-essentials-container,
+    .zen-essentials-container {
         overflow: visible !important;
     }
 
@@ -36,7 +37,9 @@
         :root:has(#theme-SuperPins[uc-essentials-width="Thin"],
             #theme-SuperPins[uc-essentials-width="Normal"],
             #theme-SuperPins[uc-essentials-width="Wide"]) {
-            #zen-essentials-container, .zen-essentials-container {
+
+            #zen-essentials-container,
+            .zen-essentials-container {
                 grid-template-columns: repeat(auto-fit,
                         minmax(var(--essentials-width), auto)) !important;
             }
@@ -46,7 +49,9 @@
             }
 
             @media (-moz-bool-pref: "uc.essentials.grid-count") {
-                #zen-essentials-container, .zen-essentials-container {
+
+                #zen-essentials-container,
+                .zen-essentials-container {
                     grid-template-columns: repeat(var(--mod-superpins-essentials-grid-count), minmax(var(--essentials-width), auto)) !important;
                 }
             }
@@ -68,7 +73,9 @@
         :root:has(#theme-SuperPins[uc-essentials-gap="Small"],
             #theme-SuperPins[uc-essentials-gap="Normal"],
             #theme-SuperPins[uc-essentials-gap="Big"]) {
-            #zen-essentials-container, .zen-essentials-container {
+
+            #zen-essentials-container,
+            .zen-essentials-container {
                 gap: var(--essentials-gap) var(--essentials-gap) !important;
             }
         }
@@ -79,21 +86,22 @@
         #navigator-toolbox[zen-sidebar-expanded="true"] {
             & #tabbrowser-tabs {
                 & .tabbrowser-tab {
-                    &[zen-pinned-changed="true"]:not([zen-essential])
-                    > .tab-stack
-                    > .tab-content
-                    > .tab-icon-stack {
-                    position: unset !important;
-                    top: unset !important;
+                    &[zen-pinned-changed="true"]:not([zen-essential])>.tab-stack>.tab-content>.tab-icon-stack {
+                        position: unset !important;
+                        top: unset !important;
                     }
                 }
             }
         }
 
-        #vertical-pinned-tabs-container, .zen-workspace-pinned-tabs-section {
-            .tabbrowser-tab[pinned]  {
-                .tab-close-button, .tab-reset-button,
-                .tab-reset-pin-button, .tab-label-container {
+        #vertical-pinned-tabs-container,
+        .zen-workspace-pinned-tabs-section {
+            .tabbrowser-tab[pinned] {
+
+                .tab-close-button,
+                .tab-reset-button,
+                .tab-reset-pin-button,
+                .tab-label-container {
                     display: none !important;
                 }
             }
@@ -101,6 +109,7 @@
 
         /*disable icon shift when tab was renamed*/
         #navigator-toolbox[zen-sidebar-expanded="true"] {
+
             & #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
             & .zen-workspace-pinned-tabs-section {
                 & .tabbrowser-tab>.tab-stack>.tab-content>.tab-icon-stack {
@@ -111,6 +120,7 @@
 
         /* Make pinned tabs auto-grow to span full width of row */
         @media (-moz-bool-pref: "uc.pins.auto-grow") {
+
             #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
             .zen-workspace-pinned-tabs-section {
                 display: flex !important;
@@ -129,6 +139,7 @@
             }
 
             @media (-moz-bool-pref: "uc.pins.grid-count") {
+
                 /* Logic for pinned tabs that have auto-grow and grid-count. Must use +1 to fix */
                 #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
                 .zen-workspace-pinned-tabs-section {
@@ -140,6 +151,7 @@
         }
 
         @media (not (-moz-bool-pref: "uc.pins.auto-grow")) {
+
             #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
             .zen-workspace-pinned-tabs-section {
                 grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
@@ -147,6 +159,7 @@
             }
 
             @media (-moz-bool-pref: "uc.pins.grid-count") {
+
                 #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
                 .zen-workspace-pinned-tabs-section {
                     grid-template-columns: repeat(var(auto-fit, --mod-superpins-pins-grid-count), minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
@@ -207,6 +220,10 @@
                     padding-bottom: 5px !important;
                 }
             }
+
+            .zen-workspace-pinned-tabs-section>.tabbrowser-tab>.tab-stack>.tab-content>.tab-icon-stack {
+                padding-top: 8px;
+            }
         }
     }
 
@@ -219,7 +236,9 @@
 
     /* If Essentials have a grid count but do not have auto-grow on */
     @media (-moz-bool-pref: "uc.essentials.grid-count") {
-        #zen-essentials-container, .zen-essentials-container {
+
+        #zen-essentials-container,
+        .zen-essentials-container {
             grid-template-columns: repeat(var(--mod-superpins-essentials-grid-count), minmax(var(--essentials-width), auto)) !important;
         }
     }
@@ -240,7 +259,8 @@
             }
         }
 
-        #zen-essentials-container, .zen-essentials-container {
+        #zen-essentials-container,
+        .zen-essentials-container {
             display: flex !important;
             flex-wrap: wrap !important;
             flex-direction: row !important;
@@ -254,7 +274,9 @@
 
     /* Puts Essentials at the bottom */
     :has(#theme-SuperPins[uc-essentials-position="bottom"]) {
-        .tabbrowser-tab:not([pinned]), #tabs-newtab-button {
+
+        .tabbrowser-tab:not([pinned]),
+        #tabs-newtab-button {
             margin-left: var(--zen-toolbox-padding) !important;
             margin-right: var(--zen-toolbox-padding) !important;
         }
@@ -275,18 +297,19 @@
             position: relative !important;
             overflow-x: hidden !important;
         }
-        
+
         .zen-essentials-container {
             position: relative !important;
             margin-top: auto !important;
             padding-top: 8px !important;
         }
 
-        #zen-essentials-container, #zen-essentials {
+        #zen-essentials-container,
+        #zen-essentials {
             order: 999 !important;
         }
 
-        #tabbrowser-arrowscrollbox > zen-workspace {
+        #tabbrowser-arrowscrollbox>zen-workspace {
             padding-top: 0 !important;
         }
 
@@ -337,7 +360,9 @@
 
     /* Adds border to Pins/Essentials (when toggled) */
     :root:has(#theme-SuperPins[uc-superpins-border="essentials"]) {
-        #zen-essentials-container, .zen-essentials-container {
+
+        #zen-essentials-container,
+        .zen-essentials-container {
             & .tabbrowser-tab[zen-essential="true"] .tab-stack .tab-background {
                 border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
                         color-mix(in srgb, var(--zen-colors-secondary) 80%, white)) !important;
@@ -346,6 +371,7 @@
     }
 
     :root:has(#theme-SuperPins[uc-superpins-border="pins"]) {
+
         .tabbrowser-tab[pinned]:not([zen-essential="true"]) .tab-stack .tab-background,
         #vertical-pinned-tabs-container>.zen-workspace-tabs-section tab-group,
         .zen-workspace-pinned-tabs-section tab-group {
@@ -355,6 +381,7 @@
     }
 
     :root:has(#theme-SuperPins[uc-superpins-border="both"]) {
+
         .tabbrowser-tab[pinned] .tab-stack .tab-background,
         #vertical-pinned-tabs-container>.zen-workspace-tabs-section tab-group,
         .zen-workspace-pinned-tabs-section tab-group {
@@ -381,6 +408,7 @@
         }
 
         @media (-moz-bool-pref: "uc.pins.grid-count") {
+
             #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
             .zen-workspace-pinned-tabs-section {
                 grid-template-columns: repeat(var(auto-fit, --mod-superpins-pins-grid-count), minmax(var(--essentials-width), auto)) !important;
@@ -392,19 +420,19 @@
     :root:has(#theme-SuperPins[uc-pinned-height="small"]) {
         .zen-workspace-pinned-tabs-section .tabbrowser-tab {
             height: 40px !important;
-        } 
+        }
     }
 
     :root:has(#theme-SuperPins[uc-pinned-height="normal"]) {
         .zen-workspace-pinned-tabs-section .tabbrowser-tab {
             height: 50px !important;
-        } 
+        }
     }
 
     :root:has(#theme-SuperPins[uc-pinned-height="large"]) {
         .zen-workspace-pinned-tabs-section .tabbrowser-tab {
             height: 60px !important;
-        } 
+        }
     }
 
     /* favicon size */
@@ -502,19 +530,23 @@
         }
 
         :root:has(#theme-SuperPins[uc-tabs-show-separator="essentials-shown"]) {
-            #zen-essentials-container, .zen-essentials-container {
+
+            #zen-essentials-container,
+            .zen-essentials-container {
                 &:has(~ #zen-tabs-wrapper #zen-browser-tabs-container #vertical-pinned-tabs-container .zen-workspace-tabs-section[active="true"] .tabbrowser-tab) {
                     margin-bottom: 8px !important;
                 }
             }
 
-            #zen-essentials-container, .zen-essentials-container {
+            #zen-essentials-container,
+            .zen-essentials-container {
                 &:has(> :nth-child(1))~#zen-tabs-wrapper #zen-browser-tabs-container #vertical-pinned-tabs-container>.zen-workspace-tabs-section {
                     min-height: 20px !important;
                 }
             }
 
-            #zen-essentials-container, .zen-essentials-container {
+            #zen-essentials-container,
+            .zen-essentials-container {
                 &:has(> :nth-child(1))~#zen-tabs-wrapper #zen-browser-tabs-container #vertical-pinned-tabs-container>.zen-workspace-tabs-section .vertical-pinned-tabs-container-separator {
                     max-height: unset !important;
                 }
@@ -522,7 +554,9 @@
         }
 
         :root:not(:has(#theme-SuperPins[uc-tabs-show-separator="essentials-shown"])) {
-            #zen-essentials-container, .zen-essentials-container {
+
+            #zen-essentials-container,
+            .zen-essentials-container {
                 margin-bottom: 8px !important;
             }
         }
