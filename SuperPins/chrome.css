@@ -254,23 +254,6 @@
 
     /* Puts Essentials at the bottom */
     :root:has(#theme-SuperPins[uc-essentials-position="bottom"]) {
-        .tabbrowser-tab:not([pinned]), #tabs-newtab-button {
-            margin-left: var(--zen-toolbox-padding) !important;
-            margin-right: var(--zen-toolbox-padding) !important;
-        }
-
-        .zen-workspace-pinned-tabs-section {
-            max-width: calc(100% - var(--zen-toolbox-padding) * 3) !important;
-            min-width: calc(100% - var(--zen-toolbox-padding) * 3) !important;
-            width: calc(100% - var(--zen-toolbox-padding) * 3) !important;
-            padding-left: calc(var(--zen-toolbox-padding) * 2) !important;
-        }
-
-        .vertical-pinned-tabs-container-separator {
-            width: calc(100% - var(--zen-toolbox-padding) * 3) !important;
-            margin-left: calc(var(--zen-toolbox-padding) / 2) !important;
-        }
-
         #tabbrowser-arrowscrollbox {
             position: relative !important;
             overflow-x: hidden !important;
@@ -287,6 +270,7 @@
         }
 
         #tabbrowser-arrowscrollbox > zen-workspace {
+            width: 100% !important;
             padding-top: 0 !important;
         }
 
