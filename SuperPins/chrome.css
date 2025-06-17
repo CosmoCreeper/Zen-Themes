@@ -70,6 +70,8 @@
             #theme-SuperPins[uc-essentials-gap="Big"]) {
             #zen-essentials-container, .zen-essentials-container {
                 gap: var(--essentials-gap) var(--essentials-gap) !important;
+                margin-top: -1px !important;
+                padding-bottom: var(--essentials-gap) !important;
             }
         }
     }
