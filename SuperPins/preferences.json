@@ -317,6 +317,10 @@
         "placeholder": "Default",
         "options": [
             {
+                "label": "Disabled",
+                "value": "disabled"
+            },
+			{
                 "label": "Small",
                 "value": "small"
             },
