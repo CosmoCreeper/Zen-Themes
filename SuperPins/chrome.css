@@ -488,7 +488,13 @@
     }
 
     /* current workspace icons size */
-    :root:has(#theme-SuperPins[uc-workspace-current-icon-size="small"]) {
+    :root:has(#theme-SuperPins[uc-workspace-current-icon-size="disabled"]) {
+        .zen-current-workspace-indicator .zen-current-workspace-indicator-icon {
+            font-size: 0 !important;
+        }
+    }
+
+	:root:has(#theme-SuperPins[uc-workspace-current-icon-size="small"]) {
         .zen-current-workspace-indicator .zen-current-workspace-indicator-icon {
             font-size: 12px !important;
         }
