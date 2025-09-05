@@ -206,6 +206,10 @@
             }
         }
 
+        #vertical-pinned-tabs-container>.zen-workspace-tabs-section {
+            align-items: normal;
+        }
+
         .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) zen-folder[collapsed] .tab-group-container {
             display: none !important;
         }
@@ -630,10 +634,7 @@
 
     @media (-moz-pref("zen.workspaces.indicator-name-center")) {
         .zen-current-workspace-indicator-name {
-            position: absolute;
-            left: 0;
-            text-align: center;
-            width: 100%;
+            justify-content: center;
         }
     }
 
