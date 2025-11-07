@@ -175,7 +175,7 @@
             @media (-moz-pref("uc.pins.grid-count")) {
                 #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
                 .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) {
-                    grid-template-columns: repeat(var(auto-fit, --mod-superpins-pins-grid-count), minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+                    grid-template-columns: repeat(var(--mod-superpins-pins-grid-count), minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
                 }
             }
         }
