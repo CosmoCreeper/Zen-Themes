@@ -1,1 +1,13 @@
-
+{
+    "name": "LoadBarCenter",
+    "description": "Zen browser simple loading bar in centered style",
+    "homepage": "https://github.com/shumailow/centered-style-load-bar",
+    "author": "Sergei Shumailov",
+    "version": "1.0.1",
+    "tags": [
+        "loading"
+    ],
+    "createdAt": "2025-11-26",
+    "updatedAt": "2025-11-26",
+    "fork": ["zen"]
+}
