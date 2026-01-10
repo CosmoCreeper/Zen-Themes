@@ -1,0 +1,75 @@
+@property --bar-colour {
+  syntax: "<color>";
+  inherits: false;
+  /* initial-value: #f76f53; */
+  initial-value: #131816;
+}
+
+@property --bar-width {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --bar-left {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 35%;
+}
+
+@media (-moz-bool-pref: "zen.view.use-single-toolbar") {
+
+  .browserSidebarContainer.deck-selected::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 3px !important;
+    left: 48% !important;
+    height: 4.7px !important;
+    width: 4% !important;
+    background: rgba(19, 24, 22, 0.3) !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    border-radius: 90px !important;
+    display: none !important;
+  }
+
+
+
+  .browserSidebarContainer.deck-selected::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 3px !important;
+    left: 48% !important;
+    height: 4.7px !important;
+    width: 4% !important;
+    background: linear-gradient(90deg, transparent var(--bar-left), var(--bar-colour) var(--bar-left), var(--bar-colour) calc(var(--bar-left) + var(--bar-width)), transparent calc(var(--bar-left) + var(--bar-width))) !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    border-radius: 90px !important;
+  }
+
+  &:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer.deck-selected::before {
+    animation: underlineAnimation 3s infinite;
+  }
+
+  &:has(.tabbrowser-tab[selected][busy]) .browserSidebarContainer.deck-selected::after {
+    display: block !important;
+  }
+
+  @keyframes underlineAnimation {
+    0% {
+      --bar-width: 0%;
+      --bar-left: 0%;
+    }
+
+    50% {
+      --bar-width: 100%;
+      --bar-left: 0%;
+    }
+
+    100% {
+      --bar-width: 0%;
+      --bar-left: 100%;
+    }
+  }
+}
