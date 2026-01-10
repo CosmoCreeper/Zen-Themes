@@ -3,7 +3,9 @@
     "name": "SuperPins",
     "description": "This Zen Mod enhances pinned tabs/Essentials, by making some UI/UX changes.",
     "homepage": "https://github.com/CosmoCreeper/Zen-Themes/tree/main/SuperPins",
-    "style": "chrome.css",
+    "style": {
+        "chrome": "chrome.css"
+    },
     "readme": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/ad97bb70-0066-4e42-9b5f-173a5e42c6fc/readme.md",
     "image": "https://raw.githubusercontent.com/zen-browser/theme-store/main/themes/ad97bb70-0066-4e42-9b5f-173a5e42c6fc/image.png",
     "author": "CosmoCreeper",
