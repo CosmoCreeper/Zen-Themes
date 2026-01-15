@@ -637,7 +637,12 @@
     }
 
     @media (-moz-pref("zen.workspaces.indicator-name-center")) {
+        .zen-current-workspace-indicator-stack {
+            position: absolute;
+        }
+
         .zen-current-workspace-indicator-name {
+            width: 100%;
             justify-content: center;
         }
     }
