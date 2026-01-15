@@ -248,7 +248,7 @@
     /* If Essentials have a grid count but do not have auto-grow on */
     @media (-moz-pref("uc.essentials.grid-count")) {
         #zen-essentials-container, .zen-essentials-container {
-            grid-template-columns: repeat(var(--mod-superpins-essentials-grid-count), minmax(var(--essentials-width), auto)) !important;
+            grid-template-columns: repeat(var(--mod-superpins-essentials-grid-count), minmax(var(--min-essentials-width-wrap), auto)) !important;
         }
     }
 
