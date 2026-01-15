@@ -97,6 +97,10 @@
 
     /* Enables legacy layout for pinned tabs (icon only in grid) */
     @media (-moz-pref("uc.pins.legacy-layout")) {
+        .zen-tab-group-start {
+            display: none;
+        }
+
         #navigator-toolbox[zen-sidebar-expanded="true"] {
             & #tabbrowser-tabs {
                 & .tabbrowser-tab {
