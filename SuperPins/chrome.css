@@ -198,7 +198,7 @@
             &:has(> :nth-child(2)) {
                 margin: 0 var(--zen-toolbox-padding) !important;
                 padding: 0 var(--zen-toolbox-padding) !important;
-                padding-bottom: 17px !important;
+                padding-bottom: 25px !important;
             }
 
             .tabbrowser-tab {
