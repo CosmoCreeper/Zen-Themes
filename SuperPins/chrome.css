@@ -229,7 +229,7 @@
 
         .vertical-pinned-tabs-container-separator, .pinned-tabs-container-separator {
             position: absolute !important;
-            bottom: 7px !important;
+            bottom: 0 !important;
             left: 50% !important;
             transform: translateX(-50%) !important;
             width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
