@@ -170,64 +170,73 @@
         }
 
         @media not (-moz-pref("uc.pins.auto-grow")) {
-            #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
             .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) {
-                grid-template-columns: repeat(auto-fit, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
-                display: grid !important;
-            }
+                &, zen-folder > .tab-group-container {
+                    grid-template-columns: repeat(auto-fill, minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+                    display: grid !important;
 
-            @media (-moz-pref("uc.pins.grid-count")) {
-                #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
-                .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) {
-                    grid-template-columns: repeat(var(--mod-superpins-pins-grid-count), minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+                    @media (-moz-pref("uc.pins.grid-count")) {
+                        grid-template-columns: repeat(var(--mod-superpins-pins-grid-count), minmax(var(--tab-pinned-min-width-expanded), auto)) !important;
+                    }
+                }
+
+                zen-folder {
+                    grid-column: -1 / 1;
                 }
             }
         }
 
-        /*The actual grid layout*/
-        #vertical-pinned-tabs-container>.zen-workspace-tabs-section,
-        .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])),
-        .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) zen-folder > .tab-group-container {
-            &:has(> :nth-child(2)) {
-                margin: 0 var(--zen-toolbox-padding) !important;
-                padding: 0 var(--zen-toolbox-padding) !important;
+        /* The actual grid layout */
+        .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) {
+            &:has(> :nth-child(2)), zen-folder > .tab-group-container:has(> :nth-child(2)) {
+                position: relative !important;
                 overflow: visible !important;
-                padding-bottom: 17px !important;
                 gap: 3px 3px !important;
                 max-width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
             }
 
+            &:has(> :nth-child(2)) {
+                margin: 0 var(--zen-toolbox-padding) !important;
+                padding: 0 var(--zen-toolbox-padding) !important;
+                padding-bottom: 17px !important;
+            }
+
             .tabbrowser-tab {
                 --toolbarbutton-inner-padding: 0;
+
+                &[aria-hidden="true"] {
+                    display: none;
+                }
             }
-
-            &>*:not(tab-group) {
-                margin: 0 !important;
-            }
-
-            &>tab-group .tab-icon-stack {
-                margin: auto !important;
-            }
-        }
-
-        #vertical-pinned-tabs-container>.zen-workspace-tabs-section {
-            align-items: normal;
-        }
-
-        .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) zen-folder[collapsed] .tab-group-container {
-            display: none !important;
-        }
-
-        .zen-workspace-pinned-tabs-section:not(:has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])) {
-            position: relative !important;
 
             .tab-icon-stack {
                 margin-left: 50% !important;
                 transform: translateX(-50%) !important;
             }
+
+            & > *:not(tab-group) {
+                margin: 0 !important;
+            }
+
+            & > tab-group .tab-icon-stack {
+                margin: auto !important;
+            }
+
+            zen-folder > .tab-group-container:has(> :nth-child(2)) {
+                margin-inline-start: 14px !important;
+            
+                & > * {
+                    margin-inline-start: 0 !important;
+                    margin-left: 0 !important;
+                }
+            }
+
+            zen-folder[collapsed] .tab-group-container {
+                display: none !important;
+            }
         }
 
-        .vertical-pinned-tabs-container-separator, .pinned-tabs-container-separator {
+        .pinned-tabs-container-separator {
             position: absolute !important;
             bottom: 0 !important;
             left: 50% !important;
@@ -236,7 +245,7 @@
         }
 
         @media (-moz-pref("arcline.superpin")) {
-            .vertical-pinned-tabs-container-separator, .pinned-tabs-container-separator {
+            .pinned-tabs-container-separator {
                 bottom: -4px !important;
             }
         }
@@ -271,11 +280,26 @@
             }
         }
 
-        #zen-essentials-container, .zen-essentials-container {
+        .zen-essentials-container {
             display: flex !important;
             flex-wrap: wrap !important;
             flex-direction: row !important;
             width: 100% !important;
+
+            &[data-hack-type="1"] .tabbrowser-tab {
+                min-width: max(30%, var(--min-essentials-width-wrap)) !important;
+                max-width: auto;
+            }
+
+            &[data-hack-type="2"] .tabbrowser-tab {
+                min-width: max(23%, var(--min-essentials-width-wrap)) !important;
+                max-width: 1fr;
+            }
+
+            &[data-hack-type="3"] .tabbrowser-tab {
+                min-width: max(25%, 48px) !important;
+                max-width: 1fr;
+            }
         }
 
         #navigator-toolbox {
@@ -301,8 +325,9 @@
             padding-bottom: 10px !important;
         }
         
-        #zen-essentials-container, #zen-essentials {
+        #zen-essentials {
             order: 999 !important;
+            margin-bottom: 5px;
         }
 
         #tabbrowser-arrowscrollbox > zen-workspace {
@@ -359,7 +384,7 @@
 
     /* Adds border to Pins/Essentials (when toggled) */
     @media (-moz-pref("uc.superpins.border", "essentials")) {
-        #zen-essentials-container, .zen-essentials-container {
+        .zen-essentials-container {
             & .tabbrowser-tab[zen-essential="true"] .tab-stack .tab-background {
                 border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
                         color-mix(in srgb, var(--zen-colors-secondary) 80%, white)) !important;
@@ -410,29 +435,29 @@
     }
 
     /* pins height */
-    :root {
+    .zen-workspace-pinned-tabs-section {
         --pins-height: var(--tab-min-height);
     }
 
     @media (-moz-pref("uc.pinned.height", "small")) {
-        :root {
+        .zen-workspace-pinned-tabs-section {
             --pins-height: 40px;
         }
     }
 
     @media (-moz-pref("uc.pinned.height", "normal")) {
-        :root {
+        .zen-workspace-pinned-tabs-section {
             --pins-height: 50px;
         }
     }
 
     @media (-moz-pref("uc.pinned.height", "large")) {
-        :root {
+        .zen-workspace-pinned-tabs-section {
             --pins-height: 60px;
         }
     }
 
-    @media (-moz-pref("uc.pinned.height")) and not (-moz-pref("uc.pinned.height", "none")) {
+    @media not (-moz-pref("uc.pinned.height", "none")) {
         .zen-workspace-pinned-tabs-section .tabbrowser-tab {
             height: var(--pins-height) !important;
         }
@@ -619,6 +644,7 @@
         #tabbrowser-arrowscrollbox .zen-workspace-normal-tabs-section {
             flex: 1 1 0;
             overflow-y: auto !important;
+            margin-bottom: 5px;
         }
     }
 
@@ -642,8 +668,9 @@
         }
 
         .zen-current-workspace-indicator-name {
-            width: 100%;
-            justify-content: center;
+            position: absolute;
+            transform: translateX(-50%);
+            left: 50%;
         }
     }
 
@@ -691,7 +718,7 @@
         }
     
         .zen-current-workspace-indicator {
-          bottom: 0;
+          bottom: 5px;
         }
     }
 
