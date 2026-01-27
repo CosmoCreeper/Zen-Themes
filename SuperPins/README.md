@@ -1,12 +1,11 @@
 # SuperPins
 
-This **Zen Mod** elevates your experience with pinned tabs and Essentials by making some UI/UX changes.
+This mod elevates your experience with pinned tabs and Essentials by making some UI/UX changes.
 
 ![image](https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/SuperPins/image.png)
 
-
-**Latest Version:** 1.5.3
-## Features (toggle in Zens Mod settings):
+**Latest Version:** 1.7.0
+## Features (toggle in mod settings):
   - Increase the width of Essentials/Pins (This can be controlled through a dropdown)
   - Controllable Margins between Essentials/Pins (3 Options Dropdown)
   - Move Essentials to the bottom
