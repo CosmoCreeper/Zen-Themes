@@ -88,7 +88,9 @@
 
       @media (-moz-pref("uc.pins.separator-at-bottom")) {
         &:has(.tabbrowser-tab), &:not(:has(.tabbrowser-tab)) {
-          position: unset !important;
+          position: fixed !important;
+          bottom: 0;
+          padding-bottom: 0 !important;
         }
       }
     }
@@ -101,7 +103,9 @@
       padding-bottom: 0 !important;
     
       @media (-moz-pref("uc.pins.separator-at-bottom")) {
-        position: unset !important;
+        position: fixed !important;
+        bottom: 0;
+        padding-bottom: 0 !important;
       }
 
       @media not (-moz-pref("uc.pins.separator-at-bottom")) {
