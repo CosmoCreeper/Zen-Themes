@@ -140,6 +140,12 @@
         "disabledOn": []
     },
     {
+        "property": "uc.pins.full-width-folders",
+        "label": "Shows pinned folders at full width with labels",
+        "type": "checkbox",
+        "disabledOn": []
+    },
+    {
         "property": "uc.pins.bg",
         "label": "Adds a background to the pinned tabs",
         "type": "checkbox",

@@ -336,6 +336,31 @@
         bottom: -4px !important;
       }
     }
+
+    /* Shows pinned folders at full width with labels instead of grid icons */
+    @media (-moz-pref("uc.pins.full-width-folders")) {
+      #vertical-pinned-tabs-container,
+      .zen-workspace-pinned-tabs-section:not(
+        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+      ) {
+        zen-folder {
+          .tabbrowser-tab[pinned] .tab-label-container {
+            display: flex !important;
+          }
+
+          .tab-icon-stack {
+            margin-left: 0% !important;
+            transform: translateX(0%) !important;
+          }
+
+          & > .tab-group-container {
+            display: flex !important;
+            flex-direction: column !important;
+            flex-wrap: nowrap !important;
+          }
+        }
+      }
+    }
   }
 
   /* Make Essentials look more box like */
