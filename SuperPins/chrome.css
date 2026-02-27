@@ -353,7 +353,7 @@
             transform: translateX(0%) !important;
           }
 
-          & > .tab-group-container {
+          &:not([collapsed]) > .tab-group-container {
             display: flex !important;
             flex-direction: column !important;
             flex-wrap: nowrap !important;
