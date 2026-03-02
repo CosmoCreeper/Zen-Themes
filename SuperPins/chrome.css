@@ -684,26 +684,20 @@
   }
 
   /* workspace icons size */
-  @media (-moz-pref("uc.workspace.icon.size", "x-small")) {
-    #zen-workspaces-button {
+  #zen-workspaces-button .zen-workspace-icon {
+    @media (-moz-pref("uc.workspace.icon.size", "x-small")) {
       font-size: x-small !important;
     }
-  }
-
-  @media (-moz-pref("uc.workspace.icon.size", "small")) {
-    #zen-workspaces-button {
+  
+    @media (-moz-pref("uc.workspace.icon.size", "small")) {
       font-size: small !important;
     }
-  }
-
-  @media (-moz-pref("uc.workspace.icon.size", "medium")) {
-    #zen-workspaces-button {
+  
+    @media (-moz-pref("uc.workspace.icon.size", "medium")) {
       font-size: medium !important;
     }
-  }
-
-  @media (-moz-pref("uc.workspace.icon.size", "large")) {
-    #zen-workspaces-button {
+  
+    @media (-moz-pref("uc.workspace.icon.size", "large")) {
       font-size: large !important;
     }
   }
