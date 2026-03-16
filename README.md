@@ -17,7 +17,7 @@ A personal collection of my CSS Themes 🎨 for the [Zen Browser](https://zen-br
 
 ![image](https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/SuperGradient/image.png)
 
-  - **Galaxy/Dream Legacy Gradient**
+  - **Galaxy/Dream Legacy Gradient** (Officially working with Sine and revived since March 16th, 2026)
 
 ![image](https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/GalaxyDreamGradient/image.png)
 
