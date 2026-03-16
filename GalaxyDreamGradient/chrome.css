@@ -1,3 +1,9 @@
+/*
+  The -moz-pref media queries are not syntax errors.
+  If this bugs you, you can change the language mode in VSCode to SCSS and
+  it will use proper syntax highlighting.
+*/
+
 :root {
   @media (-moz-pref("theme.galaxydream.lightness", "darker")) {
     --galaxydream-lightness: hsl(0, 0%, 20%);
@@ -21,23 +27,25 @@
 }
 
 /* Makes the gradient work in compact mode */
-@media (-moz-pref("zen.view.compact.hide-toolbar")) and (-moz-pref("zen.view.compact")) {
-  #nav-bar::before, #nav-bar { 
-      background: radial-gradient(ellipse at bottom, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
-  }
-  #PersonalToolbar[data-l10n-id="bookmarks-toolbar"] {
-      background: radial-gradient(ellipse at top, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
-  }   
-}    
-@media (-moz-pref("zen.view.compact.hide-tabbar")) and (-moz-pref("zen.view.compact")) {
-  #navigator-toolbox {
-      --zen-themed-toolbar-bg: radial-gradient(ellipse at right, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
+:root[zen-compact-mode] {
+  @media not (-moz-pref("zen.view.use-single-toolbar")) and (-moz-pref("zen.view.compact.hide-toolbar")) {
+    #nav-bar::before, #nav-bar { 
+        background: radial-gradient(ellipse at bottom, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
+    }
+    #PersonalToolbar[data-l10n-id="bookmarks-toolbar"] {
+        background: radial-gradient(ellipse at top, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
+    }   
+  }    
+  @media (-moz-pref("zen.view.use-single-toolbar")) or (-moz-pref("zen.view.compact.hide-tabbar")) {
+    #zen-toolbar-background {
+        --zen-main-browser-background-toolbar: radial-gradient(ellipse at right, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
+    }
   }
 }
 
 /* Make gradient work when "Expand on hover" is enabled */
 @media (-moz-pref("zen.view.sidebar-expanded.on-hover")) {
-#navigator-toolbox[zen-has-hover],
+  #navigator-toolbox[zen-has-hover],
   #navigator-toolbox:focus-within,
   #navigator-toolbox[movingtab],
   #navigator-toolbox[flash-popup],
