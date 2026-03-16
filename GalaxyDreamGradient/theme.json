@@ -6,7 +6,8 @@
   "style": {
     "chrome": "chrome.css"
   },
-  "image": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/GalaxyDreamGradient/image.png",
+  "readme": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/GalaxyDreamGradient/README.md",
+  "image": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/GalaxyDreamGradient/image.png",
   "author": "CosmoCreeper",
   "version": "1.0.0",
   "preferences": "preferences.json",
