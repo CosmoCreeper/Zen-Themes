@@ -1,0 +1,20 @@
+{
+  "id": "1af731ff-4368-49ce-b1f6-9c74418b3587",
+  "name": "GalaxyDreamGradient",
+  "description": "Adds a galaxy dream gradient to your sidebar theme.",
+  "homepage": "https://github.com/CosmoCreeper/Zen-Themes/tree/main/GalaxyDreamGradient",
+  "style": {
+    "chrome": "chrome.css"
+  },
+  "image": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/GalaxyDreamGradient/image.png",
+  "author": "CosmoCreeper",
+  "version": "1.0.0",
+  "preferences": "preferences.json",
+  "tags": [
+    "workspaces",
+    "themes"
+  ],
+  "createdAt": "2026-03-16",
+  "updatedAt": "2026-03-16",
+  "fork": ["zen"]
+}
