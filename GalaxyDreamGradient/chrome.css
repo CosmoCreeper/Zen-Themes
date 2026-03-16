@@ -42,18 +42,3 @@
     }
   }
 }
-
-/* Make gradient work when "Expand on hover" is enabled */
-@media (-moz-pref("zen.view.sidebar-expanded.on-hover")) {
-  #navigator-toolbox[zen-has-hover],
-  #navigator-toolbox:focus-within,
-  #navigator-toolbox[movingtab],
-  #navigator-toolbox[flash-popup],
-  #navigator-toolbox[has-popup-menu],
-  #navigator-toolbox:has(.tabbrowser-tab:active),
-  #navigator-toolbox:has(*[open='true']:not(tab):not(#zen-sidepanel-button)) {
-      & #TabsToolbar {
-          background: radial-gradient(ellipse at right, var(--zen-browser-gradient-base, #1B1E27) 0%, light-dark(#ffffff, #1b1b1b) 95%) !important;
-      }
-  }
-}
