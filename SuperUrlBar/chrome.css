@@ -16,7 +16,7 @@
           #theme-Super-Url-Bar[uc-urlbar-border-radius="medium"],
           #theme-Super-Url-Bar[uc-urlbar-border-radius="large"],
           #theme-Super-Url-Bar[uc-urlbar-border-radius="xlarge"]) {
-    #urlbar, #urlbar-background, #notification-popup-box, #urlbar .urlbar-page-action, #urlbar #tracking-protection-icon-container,
+    #urlbar, .urlbar-background, #notification-popup-box, #urlbar .urlbar-page-action, #urlbar #tracking-protection-icon-container,
     #urlbar:not([breakout-extend="true"]) #identity-box:is(:not(.chromeUI), [pageproxystate="invalid"]) #identity-icon-box,
     #urlbar:not([breakout-extend="true"]) #identity-box.chromeUI:not([pageproxystate="invalid"]) #identity-icon-box,
     .identity-box-button {
@@ -99,17 +99,17 @@
 
 /* Custom Colors for Url Bar */
 :root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="noFocus"]) {
-    #urlbar:not([focused="true"]):not([breakout-extend="true"]) > #urlbar-background {
+    #urlbar:not([focused="true"]):not([breakout-extend="true"]) > .urlbar-background {
         background: var(--uc-urlbar-custom-bg-color) !important;
     }
 }
 :root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="Focus"]) {
-    #urlbar:is([focused], [open]) > #urlbar-background {
+    #urlbar:is([focused], [open]) > .urlbar-background {
         background: var(--uc-urlbar-custom-bg-color) !important;
     }
 }
 :root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="AlwaysColor"]) {
-    #urlbar-background {
+    .urlbar-background {
         background: var(--uc-urlbar-custom-bg-color) !important;
     }
 }
@@ -128,7 +128,7 @@
 
 /* Adds a border to the url bar when toggled */
 @media (-moz-bool-pref: "uc.urlbar.border") {
-  #urlbar-background {
+  .urlbar-background {
     border: 1px solid light-dark(color-mix(in srgb, var(--zen-colors-secondary) 80%, black),
                     color-mix(in srgb, var(--zen-colors-secondary) 80%, white)) !important;
   }
