@@ -11,10 +11,7 @@
   "author": "CosmoCreeper",
   "version": "1.0.0",
   "preferences": "preferences.json",
-  "tags": [
-    "workspaces",
-    "themes"
-  ],
+  "tags": ["workspaces", "themes"],
   "createdAt": "2026-03-16",
   "updatedAt": "2026-03-16",
   "fork": ["zen"]

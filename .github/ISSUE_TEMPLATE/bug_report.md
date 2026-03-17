@@ -3,15 +3,16 @@ name: Bug report
 about: Create a report to help us improve
 title: "[Bug]"
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
 **Affected Theme**
- - Name: 
- - Version (e.g. x.x.x): 
+
+- Name:
+- Version (e.g. x.x.x):
 
 **Affected Theme Settings**
+
 - x
 
 **Zen Version**: e.g "1.0.1-a.2"
@@ -23,6 +24,7 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'

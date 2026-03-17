@@ -1,17 +1,15 @@
 {
-    "id": "d93e67f8-e5e1-401e-9b82-f9d5bab231e6",
-    "name": "Super Url Bar",
-    "description": "Get simple rounded edges, centered text, a removed border for your url bar and a background blur.",
-    "homepage": "https://github.com/CosmoCreeper/Zen-Themes/tree/main/SuperUrlBar",
-    "style": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/chrome.css",
-    "readme": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/readme.md",
-    "image": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/image.png",
-    "author": "CosmoCreeper",
-    "version": "1.4.3",
-    "preferences": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/preferences.json",
-    "tags": [
-        "urlbar"
-    ],
-    "createdAt": "2025-04-27",
-    "updatedAt": "2026-03-16"
+  "id": "d93e67f8-e5e1-401e-9b82-f9d5bab231e6",
+  "name": "Super Url Bar",
+  "description": "Get simple rounded edges, centered text, a removed border for your url bar and a background blur.",
+  "homepage": "https://github.com/CosmoCreeper/Zen-Themes/tree/main/SuperUrlBar",
+  "style": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/chrome.css",
+  "readme": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/readme.md",
+  "image": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/image.png",
+  "author": "CosmoCreeper",
+  "version": "1.4.3",
+  "preferences": "https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/main/SuperUrlBar/preferences.json",
+  "tags": ["urlbar"],
+  "createdAt": "2025-04-27",
+  "updatedAt": "2026-03-16"
 }

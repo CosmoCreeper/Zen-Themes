@@ -3,8 +3,7 @@ name: Feature request
 about: Suggest an idea for one of the Mods/Themes
 title: "[Feature Request]"
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
 **The related Mod/Theme:**

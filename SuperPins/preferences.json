@@ -1,390 +1,390 @@
 [
-    {
-        "property": "uc.essentials.width",
-        "label": "Select the general width of Essentials (The width before the Essentials start wrapping to the next row)",
-        "type": "dropdown",
-        "placeholder": "Zen Default",
-        "defaultValue": "Normal",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Thin",
-                "value": "Thin"
-            },
-            {
-                "label": "Normal",
-                "value": "Normal"
-            },
-            {
-                "label": "Wide",
-                "value": "Wide"
-            }
-        ]
-    },
-    {
-        "property": "uc.essentials.gap",
-        "label": "Select the gap between Essentials",
-        "type": "dropdown",
-        "placeholder": "Zen Default",
-        "defaultValue": "Normal",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Small",
-                "value": "Small"
-            },
-            {
-                "label": "Normal",
-                "value": "Normal"
-            },
-            {
-                "label": "Big",
-                "value": "Big"
-            }
-        ]
-    },
-    {
-        "property": "uc.pins.essentials-layout",
-        "label": "Adds selected width and gap styles from Essentials to pinned tabs as well",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.color-scheme",
-        "label": "Background/Color types of Essentials",
-        "type": "dropdown",
-        "placeholder": "Zen Default",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Transparent Background",
-                "value": "transparent"
-            }
-        ]
-    },
-    {
-        "property": "uc.essentials.box-like-corners",
-        "label": "Makes the Essentials look more box like (Less rounded edges)",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.same-height",
-        "label": "Makes the Essentials have the same height of Pinned Tabs",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.auto-grow",
-        "label": "Makes the Essentials auto-grow to fit the full width of its row.",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.transition-bg",
-        "label": "Animate background for essentials on hover.",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.transition-speed",
-        "label": "Speed of background transition for essentials (requires above checkbox to be enabled).",
-        "type": "string",
-        "defaultValue": "100ms",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.essentials.position",
-        "label": "Select the position of Essentials (doesn't work on >1.21.1b with container-specific essentials)",
-        "type": "dropdown",
-        "placeholder": "Top",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Bottom",
-                "value": "bottom"
-            }
-        ]
-    },
-    {
-        "property": "uc.superpins.border",
-        "label": "Add a border around Pins/Essentials",
-        "type": "dropdown",
-        "placeholder": "Disabled",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Pins only",
-                "value": "pins"
-            },
-            {
-                "label": "Essentials only",
-                "value": "essentials"
-            },
-            {
-                "label": "Pins + Essentials",
-                "value": "both"
-            }
-        ]
-    },
-    {
-        "property": "uc.pins.legacy-layout",
-        "label": "Makes pinned tabs look similar to Essentials (icon only in a grid)",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.auto-grow",
-        "label": "Makes pinned tabs auto-grow to fit the full width of its row.",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.full-width-folders",
-        "label": "Shows pinned folders at full width with labels",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.bg",
-        "label": "Adds a background to the pinned tabs",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.transition-bg",
-        "label": "Animate background for pinned tabs on hover",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.transition-speed",
-        "label": "Speed of background transition for pins (requires above checkbox to be enabled).",
-        "type": "string",
-        "defaultValue": "100ms",
-        "disabledOn": []
-    },
-    {
-        "property": "zen.workspaces.show-workspace-indicator",
-        "label": "Shows the workspace-indicator between Essentials and Pins",
-        "type": "checkbox",
-        "defaultValue": true,
-        "disabledOn": []
-    },
-    {
-        "property": "zen.workspaces.indicator-name-center",
-        "label": "Center the workspace indicator name",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "zen.workspaces.indicator-position",
-        "label": "Select the position of the workspace indicator",
-        "type": "dropdown",
-        "disabledOn": [],
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Top",
-                "value": "top"
-            },
-            {
-                "label": "Bottom",
-                "value": "bottom"
-            }
-        ]
-    },
-    {
-        "property": "browser.sessionstore.restore_pinned_tabs_on_demand",
-        "label": "Loads pinned tabs only when using them, instead of loading all of them on startup",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.stay-at-top",
-        "label": "Keep pinned tabs at the top when scrolling",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.active-bg",
-        "label": "Adds a custom background to active pinned tabs",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "mod.superpins.pins.active-bg",
-        "label": "Custom background for active pinned tabs.",
-        "type": "string",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.tabs.strikethrough-on-pending",
-        "label": "Adds a strikethrough effect on unloaded tabs",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.remove-sidebar-scrollbar",
-        "label": "Removes the sidebar scrollbar",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.pins.separator-at-bottom",
-        "label": "Show separator at bottom when it would normally be hidden",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "uc.tabs.show-separator",
-        "label": "When to display separator",
-        "type": "dropdown",
-        "disabledOn": [],
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Never",
-                "value": "never"
-            },
-            {
-                "label": "When there are pinned tabs only",
-                "value": "pinned-shown"
-            },
-            {
-                "label": "When there are Essentials and/or pinned tabs",
-                "value": "essentials-shown"
-            }
-        ]
-    },
-    {
-        "property": "uc.tabs.dim-type",
-        "label": "Dim the selected parts of a tab when it is unloaded",
-        "type": "dropdown",
-        "disabledOn": [],
-        "options": [
-            {
-                "label": "Icons + Text",
-                "value": "both"
-            },
-            {
-                "label": "Icons only",
-                "value": "icons"
-            },
-            {
-                "label": "Text only",
-                "value": "text"
-            }
-        ]
-    },
-    {
-        "property": "uc.pinned.height",
-        "label": "Height of Pinned tabs",
-        "type": "dropdown",
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Small",
-                "value": "small"
-            },
-            {
-                "label": "Normal",
-                "value": "normal"
-            },
-            {
-                "label": "Large",
-                "value": "large"
-            }
-        ]
-    },
-    {
-        "property": "uc.favicon.size",
-        "label": "Size of tabs favicons",
-        "type": "dropdown",
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Small",
-                "value": "small"
-            },
-            {
-                "label": "Normal",
-                "value": "normal"
-            },
-            {
-                "label": "Large",
-                "value": "large"
-            }
-        ]
-    },
-    {
-        "property": "uc.workspace.icon.size",
-        "label": "Size of workspace icons",
-        "type": "dropdown",
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Extra Small",
-                "value": "x-small"
-            },
-            {
-                "label": "Small",
-                "value": "small"
-            },
-            {
-                "label": "Medium",
-                "value": "medium"
-            },
-            {
-                "label": "Large",
-                "value": "large"
-            }
-        ]
-    },
-    {
-        "property": "uc.workspace.current.icon.size",
-        "label": "Size of current workspace indicator icon",
-        "type": "dropdown",
-        "placeholder": "Default",
-        "options": [
-            {
-                "label": "Small",
-                "value": "small"
-            },
-            {
-                "label": "Normal",
-                "value": "normal"
-            },
-            {
-                "label": "Large",
-                "value": "large"
-            }
-        ]
-    },
-    {
-        "property": "uc.essentials.grid-count",
-        "label": "Makes Essentials have a limited amount of columns",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "mod.superpins.essentials.grid-count",
-        "label": "Number of slots in essentials grid.",
-        "type": "string",
-        "disabledOn": [],
-        "defaultValue": "1"
-    },
-    {
-        "property": "uc.pins.grid-count",
-        "label": "Makes pinned tabs have a limited amount of columns",
-        "type": "checkbox",
-        "disabledOn": []
-    },
-    {
-        "property": "mod.superpins.pins.grid-count",
-        "label": "Number of slots in pins grid.",
-        "type": "string",
-        "disabledOn": [],
-        "defaultValue": "1"
-    }
+  {
+    "property": "uc.essentials.width",
+    "label": "Select the general width of Essentials (The width before the Essentials start wrapping to the next row)",
+    "type": "dropdown",
+    "placeholder": "Zen Default",
+    "defaultValue": "Normal",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Thin",
+        "value": "Thin"
+      },
+      {
+        "label": "Normal",
+        "value": "Normal"
+      },
+      {
+        "label": "Wide",
+        "value": "Wide"
+      }
+    ]
+  },
+  {
+    "property": "uc.essentials.gap",
+    "label": "Select the gap between Essentials",
+    "type": "dropdown",
+    "placeholder": "Zen Default",
+    "defaultValue": "Normal",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Small",
+        "value": "Small"
+      },
+      {
+        "label": "Normal",
+        "value": "Normal"
+      },
+      {
+        "label": "Big",
+        "value": "Big"
+      }
+    ]
+  },
+  {
+    "property": "uc.pins.essentials-layout",
+    "label": "Adds selected width and gap styles from Essentials to pinned tabs as well",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.color-scheme",
+    "label": "Background/Color types of Essentials",
+    "type": "dropdown",
+    "placeholder": "Zen Default",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Transparent Background",
+        "value": "transparent"
+      }
+    ]
+  },
+  {
+    "property": "uc.essentials.box-like-corners",
+    "label": "Makes the Essentials look more box like (Less rounded edges)",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.same-height",
+    "label": "Makes the Essentials have the same height of Pinned Tabs",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.auto-grow",
+    "label": "Makes the Essentials auto-grow to fit the full width of its row.",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.transition-bg",
+    "label": "Animate background for essentials on hover.",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.transition-speed",
+    "label": "Speed of background transition for essentials (requires above checkbox to be enabled).",
+    "type": "string",
+    "defaultValue": "100ms",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.essentials.position",
+    "label": "Select the position of Essentials (doesn't work on >1.21.1b with container-specific essentials)",
+    "type": "dropdown",
+    "placeholder": "Top",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ]
+  },
+  {
+    "property": "uc.superpins.border",
+    "label": "Add a border around Pins/Essentials",
+    "type": "dropdown",
+    "placeholder": "Disabled",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Pins only",
+        "value": "pins"
+      },
+      {
+        "label": "Essentials only",
+        "value": "essentials"
+      },
+      {
+        "label": "Pins + Essentials",
+        "value": "both"
+      }
+    ]
+  },
+  {
+    "property": "uc.pins.legacy-layout",
+    "label": "Makes pinned tabs look similar to Essentials (icon only in a grid)",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.auto-grow",
+    "label": "Makes pinned tabs auto-grow to fit the full width of its row.",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.full-width-folders",
+    "label": "Shows pinned folders at full width with labels",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.bg",
+    "label": "Adds a background to the pinned tabs",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.transition-bg",
+    "label": "Animate background for pinned tabs on hover",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.transition-speed",
+    "label": "Speed of background transition for pins (requires above checkbox to be enabled).",
+    "type": "string",
+    "defaultValue": "100ms",
+    "disabledOn": []
+  },
+  {
+    "property": "zen.workspaces.show-workspace-indicator",
+    "label": "Shows the workspace-indicator between Essentials and Pins",
+    "type": "checkbox",
+    "defaultValue": true,
+    "disabledOn": []
+  },
+  {
+    "property": "zen.workspaces.indicator-name-center",
+    "label": "Center the workspace indicator name",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "zen.workspaces.indicator-position",
+    "label": "Select the position of the workspace indicator",
+    "type": "dropdown",
+    "disabledOn": [],
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ]
+  },
+  {
+    "property": "browser.sessionstore.restore_pinned_tabs_on_demand",
+    "label": "Loads pinned tabs only when using them, instead of loading all of them on startup",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.stay-at-top",
+    "label": "Keep pinned tabs at the top when scrolling",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.active-bg",
+    "label": "Adds a custom background to active pinned tabs",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "mod.superpins.pins.active-bg",
+    "label": "Custom background for active pinned tabs.",
+    "type": "string",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.tabs.strikethrough-on-pending",
+    "label": "Adds a strikethrough effect on unloaded tabs",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.remove-sidebar-scrollbar",
+    "label": "Removes the sidebar scrollbar",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.pins.separator-at-bottom",
+    "label": "Show separator at bottom when it would normally be hidden",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "uc.tabs.show-separator",
+    "label": "When to display separator",
+    "type": "dropdown",
+    "disabledOn": [],
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Never",
+        "value": "never"
+      },
+      {
+        "label": "When there are pinned tabs only",
+        "value": "pinned-shown"
+      },
+      {
+        "label": "When there are Essentials and/or pinned tabs",
+        "value": "essentials-shown"
+      }
+    ]
+  },
+  {
+    "property": "uc.tabs.dim-type",
+    "label": "Dim the selected parts of a tab when it is unloaded",
+    "type": "dropdown",
+    "disabledOn": [],
+    "options": [
+      {
+        "label": "Icons + Text",
+        "value": "both"
+      },
+      {
+        "label": "Icons only",
+        "value": "icons"
+      },
+      {
+        "label": "Text only",
+        "value": "text"
+      }
+    ]
+  },
+  {
+    "property": "uc.pinned.height",
+    "label": "Height of Pinned tabs",
+    "type": "dropdown",
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Small",
+        "value": "small"
+      },
+      {
+        "label": "Normal",
+        "value": "normal"
+      },
+      {
+        "label": "Large",
+        "value": "large"
+      }
+    ]
+  },
+  {
+    "property": "uc.favicon.size",
+    "label": "Size of tabs favicons",
+    "type": "dropdown",
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Small",
+        "value": "small"
+      },
+      {
+        "label": "Normal",
+        "value": "normal"
+      },
+      {
+        "label": "Large",
+        "value": "large"
+      }
+    ]
+  },
+  {
+    "property": "uc.workspace.icon.size",
+    "label": "Size of workspace icons",
+    "type": "dropdown",
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Extra Small",
+        "value": "x-small"
+      },
+      {
+        "label": "Small",
+        "value": "small"
+      },
+      {
+        "label": "Medium",
+        "value": "medium"
+      },
+      {
+        "label": "Large",
+        "value": "large"
+      }
+    ]
+  },
+  {
+    "property": "uc.workspace.current.icon.size",
+    "label": "Size of current workspace indicator icon",
+    "type": "dropdown",
+    "placeholder": "Default",
+    "options": [
+      {
+        "label": "Small",
+        "value": "small"
+      },
+      {
+        "label": "Normal",
+        "value": "normal"
+      },
+      {
+        "label": "Large",
+        "value": "large"
+      }
+    ]
+  },
+  {
+    "property": "uc.essentials.grid-count",
+    "label": "Makes Essentials have a limited amount of columns",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "mod.superpins.essentials.grid-count",
+    "label": "Number of slots in essentials grid.",
+    "type": "string",
+    "disabledOn": [],
+    "defaultValue": "1"
+  },
+  {
+    "property": "uc.pins.grid-count",
+    "label": "Makes pinned tabs have a limited amount of columns",
+    "type": "checkbox",
+    "disabledOn": []
+  },
+  {
+    "property": "mod.superpins.pins.grid-count",
+    "label": "Number of slots in pins grid.",
+    "type": "string",
+    "disabledOn": [],
+    "defaultValue": "1"
+  }
 ]

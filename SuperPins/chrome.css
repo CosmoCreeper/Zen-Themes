@@ -70,13 +70,16 @@
 
   @media (-moz-pref("uc.tabs.show-separator", "never")) {
     @media not (-moz-pref("uc.pins.separator-at-bottom")) {
-        .pinned-tabs-container-separator {
-          display: none !important;
-        }
+      .pinned-tabs-container-separator {
+        display: none !important;
+      }
     }
 
     .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ):has(> :nth-child(2)) {
       &:has(> :nth-child(3)) {
         padding-bottom: 6px !important;
@@ -87,7 +90,8 @@
       }
 
       @media (-moz-pref("uc.pins.separator-at-bottom")) {
-        &:has(.tabbrowser-tab), &:not(:has(.tabbrowser-tab)) {
+        &:has(.tabbrowser-tab),
+        &:not(:has(.tabbrowser-tab)) {
           position: fixed !important;
           bottom: 0;
           padding-bottom: 0 !important;
@@ -98,10 +102,13 @@
 
   @media (-moz-pref("uc.tabs.show-separator", "pinned-shown")) {
     .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ):not(:has(.tabbrowser-tab)):has(> :nth-child(2)) {
       padding-bottom: 0 !important;
-    
+
       @media (-moz-pref("uc.pins.separator-at-bottom")) {
         position: fixed !important;
         bottom: 0;
@@ -117,7 +124,9 @@
   }
 
   @media (-moz-pref("uc.tabs.show-separator", "essentials-shown")) {
-    zen-workspace[active="true"]:has(.zen-workspace-pinned-tabs-section .tabbrowser-tab) {
+    zen-workspace[active="true"]:has(
+        .zen-workspace-pinned-tabs-section .tabbrowser-tab
+      ) {
       &:has(
         ~ #zen-tabs-wrapper
           #zen-browser-tabs-container
@@ -130,13 +139,17 @@
     }
 
     .zen-essentials-container {
-      &:has(> :nth-child(1)) ~ #zen-tabs-wrapper .zen-workspace-pinned-tabs-section {
+      &:has(> :nth-child(1))
+        ~ #zen-tabs-wrapper
+        .zen-workspace-pinned-tabs-section {
         min-height: 20px !important;
       }
     }
 
     .zen-essentials-container {
-      &:has(> :nth-child(1)) ~ #zen-tabs-wrapper .zen-workspace-pinned-tabs-section {
+      &:has(> :nth-child(1))
+        ~ #zen-tabs-wrapper
+        .zen-workspace-pinned-tabs-section {
         .pinned-tabs-container-separator {
           max-height: unset !important;
         }
@@ -166,7 +179,10 @@
 
     #vertical-pinned-tabs-container,
     .zen-workspace-pinned-tabs-section:not(
-      :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+      :has(
+        [zen-dragtarget],
+        zen-folder .tab-group-label-container[zen-dragtarget]
+      )
     ) {
       .tabbrowser-tab[pinned] {
         .tab-close-button,
@@ -191,7 +207,10 @@
     /* Make pinned tabs auto-grow to span full width of row */
     @media (-moz-pref("uc.pins.auto-grow")) {
       .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ) {
         &,
         zen-folder > .tab-group-container {
@@ -231,10 +250,15 @@
         /* Logic for pinned tabs that have auto-grow and grid-count. Must use +1 to fix */
         #vertical-pinned-tabs-container > .zen-workspace-tabs-section,
         .zen-workspace-pinned-tabs-section:not(
-          :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+          :has(
+            [zen-dragtarget],
+            zen-folder .tab-group-label-container[zen-dragtarget]
+          )
         ) {
           & > .tabbrowser-tab {
-            width: calc(100% / (var(--mod-superpins-pins-grid-count) + 1)) !important;
+            width: calc(
+              100% / (var(--mod-superpins-pins-grid-count) + 1)
+            ) !important;
           }
         }
       }
@@ -242,7 +266,10 @@
 
     @media not (-moz-pref("uc.pins.auto-grow")) {
       .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ) {
         &,
         zen-folder > .tab-group-container {
@@ -268,7 +295,10 @@
 
     /* The actual grid layout */
     .zen-workspace-pinned-tabs-section:not(
-      :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+      :has(
+        [zen-dragtarget],
+        zen-folder .tab-group-label-container[zen-dragtarget]
+      )
     ) {
       &:has(> :nth-child(3)),
       zen-folder > .tab-group-container:has(> :nth-child(3)) {
@@ -341,7 +371,10 @@
     @media (-moz-pref("uc.pins.full-width-folders")) {
       #vertical-pinned-tabs-container,
       .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ) {
         zen-folder {
           .tabbrowser-tab[pinned] .tab-label-container {
@@ -391,7 +424,9 @@
     @media (-moz-pref("uc.essentials.grid-count")) {
       /* For auto-grow with grid-count. must use +1 to fix a bug */
       .tabbrowser-tab[zen-essential="true"] {
-        width: calc(100% / (var(--mod-superpins-essentials-grid-count) + 1)) !important;
+        width: calc(
+          100% / (var(--mod-superpins-essentials-grid-count) + 1)
+        ) !important;
       }
     }
 
@@ -480,7 +515,10 @@
     }
 
     .zen-workspace-pinned-tabs-section:not(
-      :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+      :has(
+        [zen-dragtarget],
+        zen-folder .tab-group-label-container[zen-dragtarget]
+      )
     ) {
       /* background color of pinned tabs in a normal state (not hovered/selected) */
       .tabbrowser-tab[pinned] .tab-stack .tab-background {
@@ -512,7 +550,9 @@
 
       /* background color when selected and hovering*/
       .tabbrowser-tab[pinned][selected="true"]:hover .tab-stack .tab-background,
-      .tabbrowser-tab[pinned][multiselected="true"]:hover .tab-stack .tab-background {
+      .tabbrowser-tab[pinned][multiselected="true"]:hover
+        .tab-stack
+        .tab-background {
         background-color: color-mix(
           in srgb,
           white calc(var(--pins-bg-percentage) + 18%),
@@ -548,7 +588,9 @@
   }
 
   @media (-moz-pref("uc.superpins.border", "pins")) {
-    .tabbrowser-tab[pinned]:not([zen-essential="true"]) .tab-stack .tab-background,
+    .tabbrowser-tab[pinned]:not([zen-essential="true"])
+      .tab-stack
+      .tab-background,
     #vertical-pinned-tabs-container > .zen-workspace-tabs-section tab-group,
     .zen-workspace-pinned-tabs-section tab-group {
       border: 1px solid
@@ -575,7 +617,10 @@
   @media (-moz-pref("uc.pins.essentials-layout")) {
     /* Specific query to overwrite previous one */
     .zen-workspace-pinned-tabs-section:not(
-        :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+        :has(
+          [zen-dragtarget],
+          zen-folder .tab-group-label-container[zen-dragtarget]
+        )
       ):has(> :nth-child(3)) {
       @media (-moz-pref("uc.essentials.width")) {
         grid-template-columns: repeat(
@@ -688,15 +733,15 @@
     @media (-moz-pref("uc.workspace.icon.size", "x-small")) {
       font-size: x-small !important;
     }
-  
+
     @media (-moz-pref("uc.workspace.icon.size", "small")) {
       font-size: small !important;
     }
-  
+
     @media (-moz-pref("uc.workspace.icon.size", "medium")) {
       font-size: medium !important;
     }
-  
+
     @media (-moz-pref("uc.workspace.icon.size", "large")) {
       font-size: large !important;
     }
@@ -791,14 +836,19 @@
 
   @media (-moz-pref("uc.pins.active-bg")) {
     .zen-workspace-pinned-tabs-section:not(
-      :has([zen-dragtarget], zen-folder .tab-group-label-container[zen-dragtarget])
+      :has(
+        [zen-dragtarget],
+        zen-folder .tab-group-label-container[zen-dragtarget]
+      )
     ) {
       .tabbrowser-tab[pinned][selected="true"] .tab-stack .tab-background {
         background-color: var(--mod-superpins-pins-active-bg) !important;
         opacity: 1 !important;
       }
 
-      .tabbrowser-tab[pinned][selected="true"]:hover .tab-stack .tab-background {
+      .tabbrowser-tab[pinned][selected="true"]:hover
+        .tab-stack
+        .tab-background {
         opacity: 0.8 !important;
         background-color: var(--mod-superpins-pins-active-bg) !important;
       }
