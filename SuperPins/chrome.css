@@ -414,7 +414,7 @@
   }
 
   /* Make Essentials auto-grow to span full width of a row */
-  @media (-moz-pref("uc.essentials.auto-grow")) {
+  @media (-moz-pref("uc.essentials.auto-grow")) and (not (-moz-pref("zen.view.sidebar-expanded"))) {
     .tabbrowser-tab[zen-essential="true"] {
       width: auto !important;
       min-width: var(--min-essentials-width-wrap) !important;
@@ -927,37 +927,37 @@
     :root[customizing] #TabsToolbar-customization-target {
       visibility: visible !important;
     }
-    
+
     .zen-workspace-pinned-tabs-section {
       display: flex !important;
       flex-direction: column;
     }
-    
+
     :root[zen-single-toolbar="true"] #nav-bar {
       margin-bottom: 8px !important; /* Adjust gap between urlbar and extensions */
     }
-    
+
     /* Pinned extensions */
     #TabsToolbar-customization-target {
       display: flex !important;
       flex-direction: row !important;
       flex-wrap: wrap !important;
       gap: calc(var(--zen-toolbox-padding) - 3px) !important;
-    
+
       #tabbrowser-tabs {
         min-width: 100% !important;
         height: calc(100% - 27px) !important;
         transform: translateY(-1px);
       }
-    
+
       #Zen-tabs-wrapper {
         max-height: 700px !important;
       }
-    
+
       .unified-extensions-item-action-button {
         padding: 0px !important;
       }
-    
+
       /* Pinned Extensions */
       .unified-extensions-item {
         margin-inline: 2px !important;
@@ -968,16 +968,17 @@
         flex-grow: 1 !important;
         order: -1 !important;
         background-color: var(--zen-toolbar-element-bg) !important;
-        box-shadow: 0 0px 3px light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)) !important;
+        box-shadow: 0 0px 3px
+          light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0)) !important;
         border-radius: var(--border-radius-medium) !important;
         transition: background 0.1s ease-in-out !important;
       }
-    
+
       .unified-extensions-item:hover {
         background-color: var(--toolbarbutton-hover-background) !important;
         outline-color: var(--tab-hover-outline-color) !important;
       }
-    
+
       > toolbarbutton:not([id="tabs-newtab-button"]):not(#sort-button):not(
           #clear-button
         ),
@@ -986,22 +987,22 @@
         width: 32px !important;
         flex-grow: 1 !important;
         padding: 0px !important;
-    
+
         toolbarbutton,
         stack {
           --toolbarbutton-active-background: transparent !important;
           --toolbarbutton-hover-background: transparent !important;
         }
-    
+
         .toolbarbutton-badge {
           display: none !important;
         }
-    
+
         .toolbarbutton-text {
           display: none !important;
         }
       }
-    
+
       > toolbarbutton:not([id="tabs-newtab-button"]),
       > toolbaritem {
         background-color: var(--zen-toolbar-element-bg) !important;
@@ -1013,14 +1014,14 @@
         flex-grow: 1 !important;
         transition: background 0.1s ease-in-out !important;
       }
-    
+
       > toolbarbutton:not([id="tabs-newtab-button"]):hover,
       > toolbaritem:hover {
         background-color: var(--toolbarbutton-hover-background) !important;
         outline-color: var(--tab-hover-outline-color) !important;
       }
     }
-    
+
     /* for collapsed toolbar */
     html:not([zen-sidebar-expanded="true"]):not([zen-single-toolbar="true"])
       #TabsToolbar-customization-target
@@ -1030,7 +1031,7 @@
       margin-inline: 6px !important; /* fake side padding */
       margin-block: 2px !important; /* vertical spacing */
     }
-    
+
     .zen-essentials-container {
       :root[zen-single-toolbar="true"] &:not(:empty) {
         padding-top: 3px !important;
