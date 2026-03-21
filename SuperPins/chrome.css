@@ -673,7 +673,7 @@
 
   @media (-moz-pref("uc.pinned.height")) {
     .zen-workspace-pinned-tabs-section .tabbrowser-tab {
-      height: var(--pins-height) !important;
+      height: var(--pins-height);
     }
   }
 
