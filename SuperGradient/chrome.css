@@ -286,13 +286,6 @@
   }
 }
 
-/* Makes Zen's built-in film grain work with gradients */
-@media (-moz-pref("theme.supergradient.preset")) {
-  #zen-browser-background::after {
-    mix-blend-mode: overlay;
-  }
-}
-
 /* This fixes the corners of the browser content */
 browser {
   border-radius: var(
