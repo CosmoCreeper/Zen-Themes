@@ -414,7 +414,7 @@
   }
 
   /* Make Essentials auto-grow to span full width of a row */
-  @media (-moz-pref("uc.essentials.auto-grow")) and (not (-moz-pref("zen.view.sidebar-expanded"))) {
+  @media (-moz-pref("uc.essentials.auto-grow")) and (-moz-pref("zen.view.sidebar-expanded")) {
     .tabbrowser-tab[zen-essential="true"] {
       width: auto !important;
       min-width: var(--min-essentials-width-wrap) !important;
