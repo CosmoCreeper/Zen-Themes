@@ -459,34 +459,34 @@
 
   /* Puts Essentials at the bottom */
   @media (-moz-pref("uc.essentials.position", "bottom")) {
-    #tabbrowser-arrowscrollbox {
-      position: relative !important;
-      overflow-x: hidden !important;
-    }
-
-    .zen-essentials-container {
-      position: relative !important;
-      margin-top: auto !important;
-      padding-top: 8px !important;
-    }
-
-    /* Adds padding-bottom only when media controls are visible */
-    #zen-media-controls-toolbar:not([hidden]) ~ .zen-essentials-container {
-      padding-bottom: 10px !important;
-    }
-
-    #zen-essentials {
-      order: 999 !important;
-      margin-bottom: 5px;
-    }
-
-    #tabbrowser-arrowscrollbox > zen-workspace {
-      width: 100% !important;
-      padding-top: 0 !important;
-    }
-
-    #navigator-toolbox[zen-sidebar-expanded="true"] {
+    #navigator-toolbox:not(:has(#zen-drag-indicator)) {
+      #tabbrowser-arrowscrollbox {
+        position: relative !important;
+        overflow-x: hidden !important;
+      }
+  
       .zen-essentials-container {
+        position: relative !important;
+        margin-top: auto !important;
+        padding-top: 8px !important;
+      }
+  
+      /* Adds padding-bottom only when media controls are visible */
+      #zen-media-controls-toolbar:not([hidden]) ~ .zen-essentials-container {
+        padding-bottom: 10px !important;
+      }
+  
+      #zen-essentials {
+        order: 999 !important;
+        margin-bottom: 5px;
+      }
+  
+      #tabbrowser-arrowscrollbox > zen-workspace {
+        width: 100% !important;
+        padding-top: 0 !important;
+      }
+  
+      &[zen-sidebar-expanded="true"] .zen-essentials-container {
         min-width: 100% !important;
         width: 100% !important;
       }
