@@ -1,13 +1,12 @@
 import json from "@eslint/json";
-import mozilla from "eslint-plugin-mozilla";
 import tseslint from "typescript-eslint";
 import globals from "globals";
+import markdown from "@eslint/markdown";
 
 export default tseslint.config(
-  ...mozilla.configs["flat/recommended"],
   tseslint.configs.recommendedTypeChecked,
   {
-    files: ["*/src/**/*.ts"],
+    files: ["*/src/**/*.ts", "types/**/*.d.ts", "scripts/**/*.ts"],
     rules: {
       "no-debugger": "error",
       "prefer-const": "error",
@@ -28,7 +27,6 @@ export default tseslint.config(
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...mozilla.environments["browser-window"].globals,
       },
       parserOptions: {
         project: true,
@@ -44,11 +42,36 @@ export default tseslint.config(
     },
   },
   {
-    files: ["package.json", "*/package.json"],
+    files: ["*.json", "*/*.json"],
+    extends: [tseslint.configs.disableTypeChecked],
     language: "json/json",
     ...json.configs.recommended,
   },
   {
-    ignores: ["*/dist/"],
+    files: ["*.jsonc", "*/*.jsonc", "tsconfig.json"],
+    extends: [tseslint.configs.disableTypeChecked],
+    language: "json/jsonc",
+    ...json.configs.recommended,
+  },
+  {
+    files: ["*.mjs"],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: "module",
+    },
+  },
+  {
+    files: ["*.md", "**/*.md"],
+    extends: [tseslint.configs.disableTypeChecked],
+    plugins: { markdown },
+    language: "markdown/commonmark",
+    rules: {
+      "markdown/no-html": "warn",
+      "markdown/fenced-code-language": "error",
+    },
+  },
+  {
+    ignores: ["*/dist/", "node_modules/"],
   }
 );

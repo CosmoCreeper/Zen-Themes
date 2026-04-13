@@ -6,6 +6,7 @@ export default {
     "no-descending-specificity": null,
     "selector-type-no-unknown": null,
     "selector-id-pattern": null,
+    "selector-class-pattern": null,
     "no-duplicate-selectors": null,
     "declaration-property-value-no-unknown": [
       true,

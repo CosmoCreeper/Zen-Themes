@@ -7,7 +7,7 @@
     "chrome": "chrome.css"
   },
   "scripts": {
-    "dist/patches.js": {
+    "dist/patches.uc.mjs": {
       "include": ["chrome://browser/content/browser.xhtml"]
     }
   },
