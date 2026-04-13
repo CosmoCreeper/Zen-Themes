@@ -1,0 +1,3 @@
+bun run pretty
+bun run lint
+bun run build

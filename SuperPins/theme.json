@@ -7,7 +7,7 @@
     "chrome": "chrome.css"
   },
   "scripts": {
-    "patches.js": {
+    "dist/patches.js": {
       "include": ["chrome://browser/content/browser.xhtml"]
     }
   },

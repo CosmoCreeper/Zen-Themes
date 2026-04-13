@@ -1,20 +1,12 @@
 {
-  "name": "zen-themes",
+  "name": "@zen-themes/superpins",
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "bun build patches.ts --outdir ./",
-    "lint": "eslint . && stylelint '**/*.css' && prettier . --check --cache",
-    "pretty": "prettier . --write"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/bun": "latest",
-    "eslint": "^10.2.0",
-    "prettier": "^3.8.1",
-    "stylelint": "^17.6.0",
-    "stylelint-config-standard": "^40.0.0",
-    "typescript": "^6.0.2",
-    "typescript-eslint": "^8.58.1"
+    "build": "bun build src/**/*.ts --outdir dist/ --target browser --minify",
+    "lint": "eslint 'src/**/*' && stylelint '*.css' && bun run lint:pretty",
+    "lint:fix": "eslint --fix 'src/**/*' && stylelint '*.css' --fix && bun pretty",
+    "lint:pretty": "prettier --check --cache 'src/**/*' '{*.json,*.md,*.css}'",
+    "pretty": "prettier --write 'src/**/*' '{*.json,*.md,*.css}'"
   }
 }

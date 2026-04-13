@@ -1,0 +1,31 @@
+{
+  "name": "zen-themes",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "SuperPins"
+  ],
+  "scripts(note)": "Must use @zen-themes/superpins right now, but when more themes have package.json, it can become *",
+  "scripts": {
+    "build": "bun run --cwd SuperPins build",
+    "lint": "bun run pretty && bun run --cwd SuperPins lint",
+    "lint:fix": "bun run lint:pretty && bun run --cwd SuperPins lint:fix",
+    "lint:pretty": "prettier --check --cache {*.json,*.mjs,*.md} && bun run --cwd SuperPins lint:pretty",
+    "pretty": "prettier --write {*.json,*.mjs,*.md} && bun run --cwd SuperPins pretty"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.2.0",
+    "@microsoft/eslint-plugin-sdl": "^1.1.0",
+    "@types/bun": "latest",
+    "eslint": "^10.2.0",
+    "eslint-plugin-mozilla": "^4.4.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.1"
+  }
+}
