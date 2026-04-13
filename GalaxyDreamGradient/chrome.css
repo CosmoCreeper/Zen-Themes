@@ -6,17 +6,19 @@
 
 :root {
   @media (-moz-pref("theme.galaxydream.lightness", "darker")) {
-    --galaxydream-lightness: hsl(0, 0%, 20%);
+    --galaxydream-lightness: hsl(0deg 0% 20%);
   }
+
   @media (-moz-pref("theme.galaxydream.lightness", "normal")) {
-    --galaxydream-lightness: hsl(0, 0%, 40%);
+    --galaxydream-lightness: hsl(0deg 0% 40%);
   }
+
   @media (-moz-pref("theme.galaxydream.lightness", "brighter")) {
-    --galaxydream-lightness: hsl(0, 0%, 65%);
+    --galaxydream-lightness: hsl(0deg 0% 65%);
   }
 
   @media not (-moz-pref("theme.galaxydream.lightness")) {
-    --galaxydream-lightness: hsl(0, 0%, 100%);
+    --galaxydream-lightness: hsl(0deg 0% 100%);
   }
 
   --zen-browser-gradient-base: color-mix(
@@ -30,7 +32,7 @@
   --zen-main-browser-background: radial-gradient(
     ellipse,
     var(--zen-browser-gradient-base, #1b1e27) 20%,
-    light-dark(#ffffff, #1b1b1b) 100%
+    light-dark(#fff, #1b1b1b) 100%
   ) !important;
 }
 
@@ -42,23 +44,25 @@
       background: radial-gradient(
         ellipse at bottom,
         var(--zen-browser-gradient-base, #1b1e27) 0%,
-        light-dark(#ffffff, #1b1b1b) 95%
+        light-dark(#fff, #1b1b1b) 95%
       ) !important;
     }
+
     #PersonalToolbar[data-l10n-id="bookmarks-toolbar"] {
       background: radial-gradient(
         ellipse at top,
         var(--zen-browser-gradient-base, #1b1e27) 0%,
-        light-dark(#ffffff, #1b1b1b) 95%
+        light-dark(#fff, #1b1b1b) 95%
       ) !important;
     }
   }
+
   @media (-moz-pref("zen.view.use-single-toolbar")) or (-moz-pref("zen.view.compact.hide-tabbar")) {
     #zen-toolbar-background {
       --zen-main-browser-background-toolbar: radial-gradient(
         ellipse at right,
         var(--zen-browser-gradient-base, #1b1e27) 0%,
-        light-dark(#ffffff, #1b1b1b) 95%
+        light-dark(#fff, #1b1b1b) 95%
       ) !important;
     }
   }

@@ -4,6 +4,7 @@
     --gradient-start: circle at 95% top;
   }
 }
+
 @media not (-moz-pref("zen.tabs.vertical.right-side")) {
   :root {
     --gradient-start: circle at 5% top;
@@ -16,6 +17,7 @@
     --saturation: 55%;
   }
 }
+
 @media not (-moz-pref("uc.supergradient.desaturate")) {
   :root {
     --saturation: 80%;
@@ -29,40 +31,49 @@
       --lightness: 7%;
       --accent-color-lightness: 36%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "RatherSubtle")) {
       --lightness: 9%;
       --accent-color-lightness: 38%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "Normal")) {
       --lightness: 12%;
       --accent-color-lightness: 40%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "RatherIntense")) {
       --lightness: 14%;
       --accent-color-lightness: 44%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "ReallyIntense")) {
       --lightness: 16%;
       --accent-color-lightness: 48%;
     }
   }
+
   @media (prefers-color-scheme: light) {
     @media (-moz-pref("theme.supergradient.intensity", "ReallySubtle")) {
       --lightness: 90%;
       --accent-color-lightness: 66%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "RatherSubtle")) {
       --lightness: 85%;
       --accent-color-lightness: 62%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "Normal")) {
       --lightness: 80%;
       --accent-color-lightness: 58%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "RatherIntense")) {
       --lightness: 75%;
       --accent-color-lightness: 54%;
     }
+
     @media (-moz-pref("theme.supergradient.intensity", "ReallyIntense")) {
       --lightness: 70%;
       --accent-color-lightness: 50%;
@@ -84,8 +95,10 @@
     --switched-color2: 220;
     --switched-color3: 180;
     --switched-color4: 200;
-    --custom-accent-color: hsla(205, 50%, var(--accent-color-lightness), 0.7);
-    --switched-accent-color: hsla(170, 50%, var(--accent-color-lightness), 0.7);
+    --custom-accent-color: hsl(205deg 50% var(--accent-color-lightness) / 70%);
+    --switched-accent-color: hsl(
+      170deg 50% var(--accent-color-lightness) / 70%
+    );
   }
 
   @media (-moz-pref("theme.supergradient.preset", "ScarletDusk")) {
@@ -97,8 +110,8 @@
     --switched-color2: 340;
     --switched-color3: 340;
     --switched-color4: 30;
-    --custom-accent-color: hsla(350, 50%, var(--accent-color-lightness), 0.6);
-    --switched-accent-color: hsla(40, 50%, var(--accent-color-lightness), 0.6);
+    --custom-accent-color: hsl(350deg 50% var(--accent-color-lightness) / 60%);
+    --switched-accent-color: hsl(40deg 50% var(--accent-color-lightness) / 60%);
   }
 
   @media (-moz-pref("theme.supergradient.preset", "AmethystClaret")) {
@@ -110,8 +123,10 @@
     --switched-color2: 270;
     --switched-color3: 20;
     --switched-color4: 320;
-    --custom-accent-color: hsla(280, 50%, var(--accent-color-lightness), 0.5);
-    --switched-accent-color: hsla(350, 50%, var(--accent-color-lightness), 0.5);
+    --custom-accent-color: hsl(280deg 50% var(--accent-color-lightness) / 50%);
+    --switched-accent-color: hsl(
+      350deg 50% var(--accent-color-lightness) / 50%
+    );
   }
 
   @media (-moz-pref("theme.supergradient.preset", "OliveSunset")) {
@@ -123,8 +138,8 @@
     --switched-color2: 20;
     --switched-color3: 160;
     --switched-color4: 50;
-    --custom-accent-color: hsla(40, 50%, var(--accent-color-lightness), 0.5);
-    --switched-accent-color: hsla(60, 50%, var(--accent-color-lightness), 0.5);
+    --custom-accent-color: hsl(40deg 50% var(--accent-color-lightness) / 50%);
+    --switched-accent-color: hsl(60deg 50% var(--accent-color-lightness) / 50%);
   }
 
   @media (-moz-pref("theme.supergradient.preset", "MidnightMajesty")) {
@@ -136,8 +151,10 @@
     --switched-color2: 50;
     --switched-color3: 10;
     --switched-color4: 60;
-    --custom-accent-color: hsla(50, 50%, var(--accent-color-lightness), 0.5);
-    --switched-accent-color: hsla(310, 50%, var(--accent-color-lightness), 0.4);
+    --custom-accent-color: hsl(50deg 50% var(--accent-color-lightness) / 50%);
+    --switched-accent-color: hsl(
+      310deg 50% var(--accent-color-lightness) / 40%
+    );
   }
 }
 
@@ -154,7 +171,7 @@
     --zen-main-browser-background: radial-gradient(
       ellipse,
       var(--zen-browser-gradient-base, #1b1e27) 20%,
-      light-dark(#ffffff, #1b1b1b) 100%
+      light-dark(#fff, #1b1b1b) 100%
     ) !important;
   }
 }
@@ -204,10 +221,10 @@
   .zen-browser-generic-background {
     --zen-main-browser-background: radial-gradient(
       var(--gradient-start),
-      hsl(var(--gradient-color1), var(--saturation), var(--lightness)),
-      hsl(var(--gradient-color2), var(--saturation), var(--lightness)),
-      hsl(var(--gradient-color3), var(--saturation), var(--lightness)),
-      hsl(var(--gradient-color4), var(--saturation), var(--lightness))
+      hsl(var(--gradient-color1) var(--saturation) var(--lightness)),
+      hsl(var(--gradient-color2) var(--saturation) var(--lightness)),
+      hsl(var(--gradient-color3) var(--saturation) var(--lightness)),
+      hsl(var(--gradient-color4) var(--saturation) var(--lightness))
     ) !important;
   }
 }
@@ -262,6 +279,7 @@
       transparent 75%
     ) !important;
   }
+
   /* background color when hovering */
   .tabbrowser-tab:hover .tab-stack .tab-background {
     background-color: color-mix(
@@ -270,11 +288,13 @@
       transparent 75%
     ) !important;
   }
+
   /* background color when selected */
   .tabbrowser-tab[selected="true"] .tab-stack .tab-background,
   .tabbrowser-tab[multiselected="true"] .tab-stack .tab-background {
     background-color: var(--custom-accent-color) !important;
   }
+
   /* background color when hovering and selected */
   .tabbrowser-tab[selected="true"]:hover .tab-stack .tab-background,
   .tabbrowser-tab[multiselected="true"]:hover .tab-stack .tab-background {
@@ -293,7 +313,8 @@ browser {
     var(--zen-border-radius)
   ) !important;
 }
-@media (-moz-bool-pref: "zen.view.compact") and (-moz-bool-pref: "zen.view.compact.hide-toolbar") {
+
+@media (-moz-pref("zen.view.compact")) and (-moz-pref("zen.view.compact.hide-toolbar")) {
   #nav-bar {
     border-bottom-left-radius: var(
       --zen-webview-border-radius,

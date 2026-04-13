@@ -1,23 +1,23 @@
 /* Adjust border radius of url bar and its elements */
-:root:has(#theme-Super-Url-Bar[uc-urlbar-border-radius="small"]) {
-  --urlbar-border-radius: 4px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-border-radius="medium"]) {
-  --urlbar-border-radius: 8px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-border-radius="large"]) {
-  --urlbar-border-radius: 14px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-border-radius="xlarge"]) {
-  --urlbar-border-radius: 20px;
+:root {
+  @media (-moz-pref("uc.urlbar.border-radius", "small")) {
+    --urlbar-border-radius: 4px;
+  }
+
+  @media (-moz-pref("uc.urlbar.border-radius", "medium")) {
+    --urlbar-border-radius: 8px;
+  }
+
+  @media (-moz-pref("uc.urlbar.border-radius", "large")) {
+    --urlbar-border-radius: 14px;
+  }
+
+  @media (-moz-pref("uc.urlbar.border-radius", "xlarge")) {
+    --urlbar-border-radius: 20px;
+  }
 }
 
-:root:has(
-  #theme-Super-Url-Bar[uc-urlbar-border-radius="small"],
-  #theme-Super-Url-Bar[uc-urlbar-border-radius="medium"],
-  #theme-Super-Url-Bar[uc-urlbar-border-radius="large"],
-  #theme-Super-Url-Bar[uc-urlbar-border-radius="xlarge"]
-) {
+@media (-moz-pref("uc.urlbar.border-radius")) {
   #urlbar,
   .urlbar-background,
   #notification-popup-box,
@@ -38,26 +38,24 @@
       #identity-permission-box:is([hasPermissions], [hasSharingIcon])
     ):not([pageproxystate="invalid"])
     #identity-icon-box {
-    border-top-left-radius: var(--urlbar-border-radius) !important;
-    border-bottom-left-radius: var(--urlbar-border-radius) !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
+    border-radius: var(--urlbar-border-radius) 0 0 var(--urlbar-border-radius) !important;
   }
 }
 
-/* Centers the url text when enabled in dropdown: 1.Option: Centers the text unless url bar is focused; 2.Option: Centers the text always*/
-:root:has(#theme-Super-Url-Bar[uc-urltext-center="normal"]) {
+/* Centers the url text when enabled in dropdown: 1.Option: Centers the text unless url bar is focused; 2.Option: Centers the text always */
+@media (-moz-pref("uc.urltext.center", "normal")) {
   #urlbar:not([focused]) .urlbar-input {
     text-align: center !important;
   }
 }
-:root:has(#theme-Super-Url-Bar[uc-urltext-center="advanced"]) {
+
+@media (-moz-pref("uc.urltext.center", "advanced")) {
   #urlbar .urlbar-input {
     text-align: center !important;
   }
 }
 
-@media (-moz-bool-pref: "uc.urlbar.move-icon-into") {
+@media (-moz-pref("uc.urlbar.move-icon-into")) {
   #page-action-buttons {
     margin-right: calc(
       var(--urlbar-min-height) - 1px - 4 * var(--urlbar-container-padding)
@@ -69,6 +67,7 @@
       -21px - 2 * var(--urlbar-icon-padding) - var(--urlbar-margin-inline)
     ) !important;
     position: relative;
+
     --toolbarbutton-inner-padding: var(--urlbar-icon-padding);
     --toolbarbutton-hover-background: color-mix(
       in srgb,
@@ -79,74 +78,71 @@
 }
 
 /* Blurs the background when url bar is focused when toggled */
-:root:has(#theme-Super-Url-Bar[uc-urlbar-blur-intensity="Subtle"]) {
-  --blur-intensity: 1px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-blur-intensity="Normal"]) {
-  --blur-intensity: 2px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-blur-intensity="RatherStrong"]) {
-  --blur-intensity: 3px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-blur-intensity="Strong"]) {
-  --blur-intensity: 4px;
-}
-:root:has(#theme-Super-Url-Bar[uc-urlbar-blur-intensity="ReallyStrong"]) {
-  --blur-intensity: 6px;
+:root {
+  @media (-moz-pref("uc.urlbar.blur-intensity", "Subtle")) {
+    --blur-intensity: 1px;
+  }
+
+  @media (-moz-pref("uc.urlbar.blur-intensity", "Normal")) {
+    --blur-intensity: 2px;
+  }
+
+  @media (-moz-pref("uc.urlbar.blur-intensity", "RatherStrong")) {
+    --blur-intensity: 3px;
+  }
+
+  @media (-moz-pref("uc.urlbar.blur-intensity", "Strong")) {
+    --blur-intensity: 4px;
+  }
+
+  @media (-moz-pref("uc.urlbar.blur-intensity", "ReallyStrong")) {
+    --blur-intenstiy: 6px;
+  }
 }
 
-:root:has(
-  #theme-Super-Url-Bar[uc-urlbar-blur-intensity="Subtle"],
-  #theme-Super-Url-Bar[uc-urlbar-blur-intensity="Normal"],
-  #theme-Super-Url-Bar[uc-urlbar-blur-intensity="RatherStrong"],
-  #theme-Super-Url-Bar[uc-urlbar-blur-intensity="Strong"],
-  #theme-Super-Url-Bar[uc-urlbar-blur-intensity="ReallyStrong"]:not(
-      [inDOMFullscreen="true"]
-    ):not([chromehidden~="location"]):not([chromehidden~="toolbar"])
-) {
-  #urlbar:is(
+@media (-moz-pref("uc.urlbar.blur-intensity")) {
+  :root:not(
+      [inDOMFullscreen="true"],
+      [chromehidden~="location"],
+      [chromehidden~="toolbar"]
+    )
+    #urlbar:is(
       [breakout][breakout-extend],
       [breakout][usertyping][focused]
-    ):after {
+    )::after {
     content: "";
     position: fixed;
     pointer-events: none;
-
     width: 200vw;
     height: 200vh;
-
     top: -100vh;
     left: -100vw;
-
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgb(0 0 0 / 30%);
     backdrop-filter: blur(var(--blur-intensity));
-
     z-index: -1;
   }
 }
 
 /* Custom Colors for Url Bar */
-:root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="noFocus"]) {
-  #urlbar:not([focused="true"]):not([breakout-extend="true"])
-    > .urlbar-background {
+@media (-moz-pref("uc.urlbar.custom-bg-color-mode", "noFocus")) {
+  #urlbar:not([focused="true"], [breakout-extend="true"]) > .urlbar-background {
     background: var(--uc-urlbar-custom-bg-color) !important;
   }
 }
-:root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="Focus"]) {
+
+@media (-moz-pref("uc.urlbar.custom-bg-color-mode", "Focus")) {
   #urlbar:is([focused], [open]) > .urlbar-background {
     background: var(--uc-urlbar-custom-bg-color) !important;
   }
 }
-:root:has(#theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="AlwaysColor"]) {
+
+@media (-moz-pref("uc.urlbar.custom-bg-color-mode", "AlwaysColor")) {
   .urlbar-background {
     background: var(--uc-urlbar-custom-bg-color) !important;
   }
 }
 
-:root:has(
-  #theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="AlwaysColor"],
-  #theme-Super-Url-Bar[uc-urlbar-custom-bg-color-mode="noFocus"]
-) {
+@media (-moz-pref("uc.urlbar.custom-bg-color-mode", "noFocus")) or (-moz-pref("uc.urlbar.custom-bg-color-mode", "AlwaysColor")) {
   #identity-icon-box,
   #identity-permission-box {
     background-color: color-mix(
@@ -155,6 +151,7 @@
       light-dark(black, white)
     ) !important;
   }
+
   #tracking-protection-icon-container,
   .urlbar-page-action,
   #picture-in-picture-button,
@@ -171,7 +168,7 @@
 }
 
 /* Adds a border to the url bar when toggled */
-@media (-moz-bool-pref: "uc.urlbar.border") {
+@media (-moz-pref("uc.urlbar.border")) {
   .urlbar-background {
     border: 1px solid
       light-dark(
@@ -182,68 +179,77 @@
 }
 
 /* Hides the container info in url-bar */
-:root:has(#theme-Super-Url-Bar[uc-urlbar-hide-container-info="hideLabel"]) {
+@media (-moz-pref("uc.urlbar.hide-container-info", "hideLabel")) {
   #userContext-label {
     display: none;
   }
 }
-:root:has(#theme-Super-Url-Bar[uc-urlbar-hide-container-info="hideIcon"]) {
+
+@media (-moz-pref("uc.urlbar.hide-container-info", "hideIcon")) {
   #userContext-indicator {
     display: none;
   }
 }
-:root:has(#theme-Super-Url-Bar[uc-urlbar-hide-container-info="hideIconLabel"]) {
+
+@media (-moz-pref("uc.urlbar.hide-container-info", "hideIconLabel")) {
   #userContext-icons {
     display: none;
   }
 }
 
 /* Makes all the hidden icons appear on hover */
-@media not (-moz-bool-pref: "uc.urlbar.icon.show-on-hover") {
+@media not (-moz-pref("uc.urlbar.icon.show-on-hover")) {
   :root {
     --position-var: absolute;
     --pointer-events: none;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.show-on-hover") {
+
+@media (-moz-pref("uc.urlbar.icon.show-on-hover")) {
   :root {
     --position-var: relative;
     --pointer-events: all;
   }
 
-  @media (-moz-bool-pref: "uc.urlbar.icon.zoom.removed") {
+  @media (-moz-pref("uc.urlbar.icon.zoom.removed")) {
     #urlbar:hover #urlbar-zoom-button {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.shield.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.shield.removed")) {
     #urlbar:hover #tracking-protection-icon-container,
     #tracking-protection-icon-container[open="true"] {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.bookmark.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.bookmark.removed")) {
     #urlbar:hover #star-button-box,
     #star-button-box[open="true"] {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.reader-mode.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.reader-mode.removed")) {
     #urlbar:hover #reader-mode-button {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.pip.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.pip.removed")) {
     #urlbar:hover #picture-in-picture-button {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.split-view.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.split-view.removed")) {
     #urlbar:hover #zen-split-views-box {
       display: block !important;
     }
   }
-  @media (-moz-bool-pref: "uc.urlbar.icon.left-side.removed") {
+
+  @media (-moz-pref("uc.urlbar.icon.left-side.removed")) {
     #urlbar:hover #identity-box {
       display: block !important;
     }
@@ -256,37 +262,43 @@
 }
 
 /* Removes certain buttons from the url bar (when toggled) */
-@media (-moz-bool-pref: "uc.urlbar.icon.zoom.removed") {
+@media (-moz-pref("uc.urlbar.icon.zoom.removed")) {
   #urlbar-zoom-button {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.shield.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.shield.removed")) {
   #tracking-protection-icon-container {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.bookmark.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.bookmark.removed")) {
   #star-button-box {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.reader-mode.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.reader-mode.removed")) {
   #reader-mode-button {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.pip.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.pip.removed")) {
   #picture-in-picture-button {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.split-view.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.split-view.removed")) {
   #zen-split-views-box {
     display: none !important;
   }
 }
-@media (-moz-bool-pref: "uc.urlbar.icon.left-side.removed") {
+
+@media (-moz-pref("uc.urlbar.icon.left-side.removed")) {
   #identity-box {
     display: none !important;
   }

@@ -1,0 +1,27 @@
+{
+  "name": "zen-themes",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "lint": "eslint . && stylelint '**/*.css' && bun run lint:pretty",
+    "lint:fix": "eslint . --fix && stylelint '**/*.css' --fix && bun run lint:pretty",
+    "lint:pretty": "prettier --check --cache '**/*.{ts,mjs,json,md,css}'",
+    "pretty": "prettier --write '**/*.{ts,mjs,json,md,css}'",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.2.0",
+    "@eslint/markdown": "^8.0.1",
+    "@types/bun": "^1.3.12",
+    "eslint": "^10.2.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.58.1"
+  }
+}

@@ -26,4 +26,4 @@ A personal collection of my CSS Themes 🎨 for the [Zen Browser](https://zen-br
 
 You can find the code of each theme inside this repository!
 
-❤️❤️ **_Thanks to the original creator, [@JLBlk](https://github.com/JLBlk), for letting me maintain his mods!_** ❤️❤️
+**_Thanks to the original creator, [@JLBlk](https://github.com/JLBlk), for letting me maintain his mods!_** ❤️❤️
