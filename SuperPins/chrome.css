@@ -376,7 +376,7 @@
   /* Make Essentials look more box like */
   @media (-moz-pref("uc.essentials.box-like-corners")) {
     .tabbrowser-tab[zen-essential="true"] .tab-stack .tab-background {
-      border-radius: 5px !important;
+      --border-radius-medium: 5px;
     }
   }
 
