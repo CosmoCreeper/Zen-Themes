@@ -20,6 +20,13 @@ const _prefs = {
     }
     return false;
   },
+  bool(pref: string, fallback = false): boolean {
+    try {
+      return Services.prefs.getBoolPref(pref);
+    } catch {
+      return fallback;
+    }
+  },
 };
 
 abstract class MutationListener {
@@ -66,10 +73,11 @@ abstract class MutationListener {
 
 /*
  * Removes the orient attribute from pinned tabs containers.
- * This will allow the auto-grow feature to work properly.
+ * XUL box layout fights SuperPins' CSS grid/flex-wrap, especially after the
+ * sidebar is hidden and shown again.
  */
 class OrientListener extends MutationListener {
-  pref = "uc.pins.auto-grow";
+  prefs = ["uc.pins.legacy-layout", "uc.pins.auto-grow"];
 
   constructor(prefListeners: Record<string, () => void>) {
     // spread operator is not fast, alternative?
@@ -80,7 +88,9 @@ class OrientListener extends MutationListener {
       )
     );
 
-    prefListeners[this.pref] = this.update.bind(this);
+    for (const pref of this.prefs) {
+      prefListeners[pref] = this.update.bind(this);
+    }
     this.update();
 
     this.callback([
@@ -90,24 +100,23 @@ class OrientListener extends MutationListener {
     ]);
   }
 
-  // Adaptive update function, currently using a static one unless the dynamic one is added to the parent class
-  /*   update() {
-    if (prefs.get(this.on.pref) !== this.on.is) {
-      this.disconnect();
-      console.log("[SuperPins]: Auto-grow disabled, orientation patch disconnected.");
-    }
-  } */
+  needsOrientPatch() {
+    return this.prefs.some((pref) => _prefs.bool(pref));
+  }
 
   update() {
-    if (!Services.prefs.getBoolPref(this.pref)) {
+    if (!this.needsOrientPatch()) {
       this.disconnect();
       console.log(
-        "[SuperPins]: Auto-grow disabled, orientation patch disconnected."
+        "[SuperPins]: Grid/auto-grow disabled, orientation patch disconnected."
       );
     }
   }
 
   callback(pinnedTabsContainers: HTMLElement[]) {
+    if (!this.needsOrientPatch()) {
+      return;
+    }
     for (const pinnedTabsContainer of pinnedTabsContainers) {
       if (pinnedTabsContainer.hasAttribute("orient")) {
         console.log("[SuperPins]: Orientation attribute found, removing...");
@@ -118,10 +127,96 @@ class OrientListener extends MutationListener {
   }
 }
 
+/*
+ * When the sidebar is hidden/collapsed and opened again, the pin grid can keep
+ * a 0-height from the hidden pass. Force a reflow so normal tabs sit below
+ * SuperPins instead of covering them.
+ */
+class SidebarRelayoutListener {
+  #timer = 0;
+  #mutationObserver: MutationObserver | null = null;
+
+  constructor() {
+    const root = document.documentElement;
+    const toolbox = document.getElementById("navigator-toolbox");
+
+    this.#mutationObserver = new MutationObserver(() => this.schedule());
+    this.#mutationObserver.observe(root, {
+      attributes: true,
+      attributeFilter: [
+        "zen-sidebar-expanded",
+        "zen-compact-mode",
+        "zen-has-hover",
+      ],
+    });
+    if (toolbox) {
+      this.#mutationObserver.observe(toolbox, {
+        attributes: true,
+        attributeFilter: [
+          "zen-sidebar-expanded",
+          "zen-has-hover",
+          "zen-user-show",
+          "animate",
+        ],
+      });
+    }
+  }
+
+  schedule() {
+    window.clearTimeout(this.#timer);
+    this.stripOrient();
+    this.#timer = window.setTimeout(() => this.relayout(), 300);
+  }
+
+  stripOrient() {
+    for (const section of document.querySelectorAll<HTMLElement>(
+      ".zen-workspace-pinned-tabs-section"
+    )) {
+      if (section.hasAttribute("orient")) {
+        section.removeAttribute("orient");
+      }
+    }
+  }
+
+  relayout() {
+    this.stripOrient();
+
+    for (const section of document.querySelectorAll<HTMLElement>(
+      ".zen-workspace-pinned-tabs-section"
+    )) {
+      // Force grid/flex to recompute at the current sidebar width. A hidden
+      // pass can leave auto-fit tracks collapsed at 0 height.
+      const display = section.style.display;
+      section.style.display = "none";
+      void section.offsetHeight;
+      if (display) {
+        section.style.display = display;
+      } else {
+        section.style.removeProperty("display");
+      }
+    }
+
+    for (const workspace of document.querySelectorAll("zen-workspace")) {
+      const scrollbox = (
+        workspace as {
+          scrollbox?: { _updateScrollButtonsDisabledState?: () => void };
+        }
+      ).scrollbox;
+      scrollbox?._updateScrollButtonsDisabledState?.();
+    }
+  }
+
+  disconnect() {
+    this.#mutationObserver?.disconnect();
+    window.clearTimeout(this.#timer);
+  }
+}
+
 class Tweaks {
   #prefListeners: Record<string, () => void> = {};
-  #mutationListeners: MutationListener[] = [
+  #mutationListeners: Array<MutationListener | SidebarRelayoutListener> = [
     new OrientListener(this.#prefListeners),
+    new SidebarRelayoutListener(),
   ];
 
   constructor() {

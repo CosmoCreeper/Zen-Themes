@@ -4,6 +4,17 @@
     overflow: visible !important;
   }
 
+  /*
+   * After the sidebar is hidden/collapsed and shown again, SuperPins' grid can
+   * lose its used height. Pins still paint via overflow:visible, and normal
+   * tabs slide up over them. Keep the pin section from shrinking below its
+   * content so regular tabs stay underneath.
+   */
+  .zen-workspace-pinned-tabs-section {
+    flex-shrink: 0 !important;
+    min-height: min-content !important;
+  }
+
   /* Makes essentials transparent (when toggled) */
   @media (-moz-pref("uc.essentials.color-scheme", "transparent")) {
     .tabbrowser-tab[zen-essential="true"]:not(:hover, [selected="true"])
@@ -194,179 +205,186 @@
       }
     }
 
-    /* Make pinned tabs auto-grow to span full width of row */
-    @media (-moz-pref("uc.pins.auto-grow")) {
-      .zen-workspace-pinned-tabs-section:not(
-        :has(
-          [zen-dragtarget],
-          zen-folder .tab-group-label-container[zen-dragtarget]
-        )
-      ) {
-        &,
-        zen-folder > .tab-group-container {
-          display: flex !important;
-          flex-flow: row wrap !important;
-
-          & > zen-folder {
-            flex-basis: 100%;
-          }
-
-          & > .tabbrowser-tab {
-            width: auto !important;
-            min-width: var(--tab-pinned-min-width-expanded) !important;
-            flex: 1 1 auto !important;
-          }
-
-          & > tab-group {
-            width: 100% !important;
-          }
-        }
-      }
-
-      @media (-moz-pref("uc.pins.grid-count")) {
-        /* Logic for pinned tabs that have auto-grow and grid-count. Must use +1 to fix */
-        #vertical-pinned-tabs-container > .zen-workspace-tabs-section,
+    /*
+     * Only apply the expanded pin grid while the sidebar is open. Otherwise
+     * auto-fit/flex-wrap run at collapsed/0 width, the section height collapses,
+     * and normal tabs cover the pins when the sidebar comes back.
+     */
+    :root[zen-sidebar-expanded="true"] {
+      /* Make pinned tabs auto-grow to span full width of row */
+      @media (-moz-pref("uc.pins.auto-grow")) {
         .zen-workspace-pinned-tabs-section:not(
           :has(
             [zen-dragtarget],
             zen-folder .tab-group-label-container[zen-dragtarget]
           )
         ) {
-          & > .tabbrowser-tab {
-            width: calc(
-              100% / (var(--mod-superpins-pins-grid-count) + 1)
-            ) !important;
+          &,
+          zen-folder > .tab-group-container {
+            display: flex !important;
+            flex-flow: row wrap !important;
+
+            & > zen-folder {
+              flex-basis: 100%;
+            }
+
+            & > .tabbrowser-tab {
+              width: auto !important;
+              min-width: var(--tab-pinned-min-width-expanded) !important;
+              flex: 1 1 auto !important;
+            }
+
+            & > tab-group {
+              width: 100% !important;
+            }
+          }
+        }
+
+        @media (-moz-pref("uc.pins.grid-count")) {
+          /* Logic for pinned tabs that have auto-grow and grid-count. Must use +1 to fix */
+          #vertical-pinned-tabs-container > .zen-workspace-tabs-section,
+          .zen-workspace-pinned-tabs-section:not(
+            :has(
+              [zen-dragtarget],
+              zen-folder .tab-group-label-container[zen-dragtarget]
+            )
+          ) {
+            & > .tabbrowser-tab {
+              width: calc(
+                100% / (var(--mod-superpins-pins-grid-count) + 1)
+              ) !important;
+            }
           }
         }
       }
-    }
 
-    @media not (-moz-pref("uc.pins.auto-grow")) {
-      .zen-workspace-pinned-tabs-section:not(
-        :has(
-          [zen-dragtarget],
-          zen-folder .tab-group-label-container[zen-dragtarget]
-        )
-      ) {
-        &,
-        zen-folder > .tab-group-container {
-          grid-template-columns: repeat(
-            auto-fit,
-            minmax(var(--tab-pinned-min-width-expanded), auto)
-          ) !important;
-          display: grid !important;
-
-          @media (-moz-pref("uc.pins.grid-count")) {
+      @media not (-moz-pref("uc.pins.auto-grow")) {
+        .zen-workspace-pinned-tabs-section:not(
+          :has(
+            [zen-dragtarget],
+            zen-folder .tab-group-label-container[zen-dragtarget]
+          )
+        ) {
+          &,
+          zen-folder > .tab-group-container {
             grid-template-columns: repeat(
-              var(--mod-superpins-pins-grid-count),
+              auto-fit,
               minmax(var(--tab-pinned-min-width-expanded), auto)
             ) !important;
+            display: grid !important;
+
+            @media (-moz-pref("uc.pins.grid-count")) {
+              grid-template-columns: repeat(
+                var(--mod-superpins-pins-grid-count),
+                minmax(var(--tab-pinned-min-width-expanded), auto)
+              ) !important;
+            }
+          }
+
+          zen-folder {
+            grid-column: -1 / 1;
           }
         }
-
-        zen-folder {
-          grid-column: -1 / 1;
-        }
-      }
-    }
-
-    /* The actual grid layout */
-    .zen-workspace-pinned-tabs-section:not(
-      :has(
-        [zen-dragtarget],
-        zen-folder .tab-group-label-container[zen-dragtarget]
-      )
-    ) {
-      &:has(> :nth-child(3)),
-      zen-folder > .tab-group-container:has(> :nth-child(3)) {
-        position: relative !important;
-        overflow: visible !important;
-        gap: 3px !important;
-        max-width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
-        margin-top: 5px;
       }
 
-      &:has(> :nth-child(3)) {
-        margin: 0 var(--zen-toolbox-padding) !important;
-        padding: 0 var(--zen-toolbox-padding) !important;
-      }
-
-      &:has(> :nth-child(2)) {
-        position: relative !important;
-        padding-bottom: 25px !important;
-      }
-
-      .tabbrowser-tab {
-        --toolbarbutton-inner-padding: 0;
-
-        &[aria-hidden="true"] {
-          display: none;
-        }
-      }
-
-      .tab-icon-stack {
-        margin-left: 50% !important;
-        transform: translateX(-50%) !important;
-      }
-
-      & > *:not(tab-group) {
-        margin: 0 !important;
-      }
-
-      & > tab-group .tab-icon-stack {
-        margin: auto !important;
-      }
-
-      zen-folder > .tab-group-container:has(> :nth-child(3)) {
-        margin-inline-start: 14px !important;
-
-        & > * {
-          margin-inline-start: 0 !important;
-          margin-left: 0 !important;
-        }
-      }
-
-      zen-folder[collapsed] .tab-group-container {
-        display: none !important;
-      }
-    }
-
-    .pinned-tabs-container-separator {
-      position: absolute !important;
-      bottom: 0 !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
-    }
-
-    @media (-moz-pref("arcline.superpin")) {
-      .pinned-tabs-container-separator {
-        bottom: -4px !important;
-      }
-    }
-
-    /* Shows pinned folders at full width with labels instead of grid icons */
-    @media (-moz-pref("uc.pins.full-width-folders")) {
-      #vertical-pinned-tabs-container,
+      /* The actual grid layout */
       .zen-workspace-pinned-tabs-section:not(
         :has(
           [zen-dragtarget],
           zen-folder .tab-group-label-container[zen-dragtarget]
         )
       ) {
-        zen-folder {
-          .tabbrowser-tab[pinned] .tab-label-container {
-            display: flex !important;
-          }
+        &:has(> :nth-child(3)),
+        zen-folder > .tab-group-container:has(> :nth-child(3)) {
+          position: relative !important;
+          overflow: visible !important;
+          gap: 3px !important;
+          max-width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
+          margin-top: 5px;
+        }
 
-          .tab-icon-stack {
-            margin-left: 0% !important;
-            transform: translateX(0%) !important;
-          }
+        &:has(> :nth-child(3)) {
+          margin: 0 var(--zen-toolbox-padding) !important;
+          padding: 0 var(--zen-toolbox-padding) !important;
+        }
 
-          &:not([collapsed]) > .tab-group-container {
-            display: flex !important;
-            flex-flow: column nowrap !important;
+        &:has(> :nth-child(2)) {
+          position: relative !important;
+          padding-bottom: 25px !important;
+        }
+
+        .tabbrowser-tab {
+          --toolbarbutton-inner-padding: 0;
+
+          &[aria-hidden="true"] {
+            display: none;
+          }
+        }
+
+        .tab-icon-stack {
+          margin-left: 50% !important;
+          transform: translateX(-50%) !important;
+        }
+
+        & > *:not(tab-group) {
+          margin: 0 !important;
+        }
+
+        & > tab-group .tab-icon-stack {
+          margin: auto !important;
+        }
+
+        zen-folder > .tab-group-container:has(> :nth-child(3)) {
+          margin-inline-start: 14px !important;
+
+          & > * {
+            margin-inline-start: 0 !important;
+            margin-left: 0 !important;
+          }
+        }
+
+        zen-folder[collapsed] .tab-group-container {
+          display: none !important;
+        }
+      }
+
+      .pinned-tabs-container-separator {
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: calc(100% - var(--zen-toolbox-padding) * 2) !important;
+      }
+
+      @media (-moz-pref("arcline.superpin")) {
+        .pinned-tabs-container-separator {
+          bottom: -4px !important;
+        }
+      }
+
+      /* Shows pinned folders at full width with labels instead of grid icons */
+      @media (-moz-pref("uc.pins.full-width-folders")) {
+        #vertical-pinned-tabs-container,
+        .zen-workspace-pinned-tabs-section:not(
+          :has(
+            [zen-dragtarget],
+            zen-folder .tab-group-label-container[zen-dragtarget]
+          )
+        ) {
+          zen-folder {
+            .tabbrowser-tab[pinned] .tab-label-container {
+              display: flex !important;
+            }
+
+            .tab-icon-stack {
+              margin-left: 0% !important;
+              transform: translateX(0%) !important;
+            }
+
+            &:not([collapsed]) > .tab-group-container {
+              display: flex !important;
+              flex-flow: column nowrap !important;
+            }
           }
         }
       }
@@ -796,7 +814,7 @@
     }
 
     #tabbrowser-arrowscrollbox .zen-workspace-pinned-tabs-section {
-      flex: 0 1 0;
+      flex: 0 0 auto;
     }
 
     #tabbrowser-arrowscrollbox .zen-workspace-normal-tabs-section {
