@@ -4,7 +4,7 @@ This mod elevates your experience with pinned tabs and Essentials by making some
 
 ![image](https://raw.githubusercontent.com/CosmoCreeper/Zen-Themes/refs/heads/main/SuperPins/image.png)
 
-**Latest Version:** 1.7.0
+**Latest Version:** 1.7.3
 
 ## Features (toggle in mod settings):
 
