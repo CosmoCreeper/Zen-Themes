@@ -796,11 +796,22 @@
     }
 
     #tabbrowser-arrowscrollbox .zen-workspace-pinned-tabs-section {
-      flex: 0 1 0;
+      flex: 0 1 auto;
+      min-height: 0;
+      overflow-y: auto !important;
     }
 
     #tabbrowser-arrowscrollbox .zen-workspace-normal-tabs-section {
       flex: 1 1 0;
+
+      /* Room for the native New Tab row and one complete ordinary tab. */
+      min-height: calc(
+        2 *
+          (
+            var(--tab-min-height, 36px) + 2 *
+              var(--tab-margin-block, var(--tab-block-margin, 2px))
+          )
+      );
       overflow-y: auto !important;
       margin-bottom: 5px;
     }
@@ -888,6 +899,7 @@
   }
 
   @media (-moz-pref("uc.remove-sidebar-scrollbar")) {
+    #tabbrowser-arrowscrollbox .zen-workspace-pinned-tabs-section,
     scrollbox:nth-child(5),
     #tabbrowser-arrowscrollbox .zen-workspace-normal-tabs-section {
       scrollbar-width: none !important;
