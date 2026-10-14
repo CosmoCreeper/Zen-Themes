@@ -467,6 +467,12 @@
         width: 100% !important;
       }
     }
+
+    #navigator-toolbox:not([zen-sidebar-expanded="true"]) {
+      & #zen-essentials {
+        min-width: unset !important;
+      }
+    }
   }
 
   @media (-moz-pref("uc.essentials.position", "bottom")) and (-moz-pref("zen.workspaces.indicator-position", "bottom")) {
