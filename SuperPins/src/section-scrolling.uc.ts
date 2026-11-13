@@ -2,6 +2,7 @@ interface ScrollOwner {
   destroy(): void;
 }
 interface SharedSectionScrolling {
+  version?: number;
   owners: Map<object, MediaQueryList>;
   release(owner: object): void;
 }
@@ -49,10 +50,37 @@ declare const gBrowser: { selectedTab: Element };
   // The native selection reveal is gated on the outer scroller overflowing, which
   // is false once these mods use section scrollers. No keyboard/drop handlers are
   // replaced, and all actual selection, grouping and dropping remains native.
+  // Version 2 adds drag edge-scrolling for the ordinary tab list. Each mod ships a
+  // copy, so a newer copy takes over an older one whichever mod loads first.
   function acquireSectionScrolling(owner: object, media: MediaQueryList) {
-    const key = "__zenSectionScrollRepair";
+    const key = "__zenSectionScrollRepair",
+      version = 2;
     let shared = window[key];
-    if (!shared) {
+    if (shared && !((shared.version ?? 0) >= version)) {
+      const previous = shared,
+        moved = [...previous.owners];
+      for (const [old] of moved) previous.release(old);
+      const next = create();
+      for (const [old, query] of moved) next.owners.set(old, query);
+      // The older mod still holds the old object; route its unload here.
+      previous.release = (old: object) => next.release(old);
+      shared = next;
+    } else if (!shared) shared = create();
+    const current = shared;
+    current.owners.set(owner, media);
+    return () => current.release(owner);
+
+    function create(): SharedSectionScrolling {
+      const PINNED =
+        'zen-workspace[active="true"] .zen-workspace-pinned-tabs-section';
+      const NORMAL =
+        '#tabbrowser-arrowscrollbox > zen-workspace[active="true"] .zen-workspace-normal-tabs-section';
+      // Edge strip in px; speed in px per ms, rising with depth into the strip.
+      const EDGE = 48,
+        SLOW = 0.25,
+        FAST = 1.6;
+      const rate = (depth: number) =>
+        SLOW + (FAST - SLOW) * Math.min(1, depth) ** 2;
       const owners = new Map<object, MediaQueryList>();
       let revealFrame = 0,
         dragFrame = 0,
@@ -97,9 +125,17 @@ declare const gBrowser: { selectedTab: Element };
         dragSpeed = 0;
         lastTime = 0;
       };
+      const atLimit = (pane: Element, speed: number) =>
+        speed < 0
+          ? pane.scrollTop <= 0
+          : pane.scrollTop + pane.clientHeight >= pane.scrollHeight - 1;
       const tick = (now: number) => {
         dragFrame = 0;
-        if (!active() || !dragPane?.isConnected) {
+        if (
+          !active() ||
+          !dragPane?.isConnected ||
+          atLimit(dragPane, dragSpeed)
+        ) {
           stopDrag();
           return;
         }
@@ -108,48 +144,50 @@ declare const gBrowser: { selectedTab: Element };
         dragPane.scrollTop += dragSpeed * elapsed;
         dragFrame = requestAnimationFrame(tick);
       };
+      const overflows = (pane: Element) =>
+        pane.scrollHeight > pane.clientHeight;
+      // Returns [pane, speed] for a drag at an overflowing section's top or
+      // bottom strip, or just above the ordinary list (the New Tab row or the
+      // separator, where the pointer lands when moving tabs up), else null.
+      const edgeScroll = (event: DragEvent): [Element, number] | null => {
+        const x = event.clientX,
+          y = event.clientY,
+          target = event.target as Element | null;
+        const pane = target?.closest?.(PINNED) || target?.closest?.(NORMAL);
+        if (pane) {
+          if (!overflows(pane)) return null;
+          const r = pane.getBoundingClientRect(),
+            edge = Math.min(EDGE, r.height / 3);
+          if (x < r.left || x > r.right || y < r.top || y > r.bottom)
+            return null;
+          if (y < r.top + edge) return [pane, -rate((r.top + edge - y) / edge)];
+          if (y > r.bottom - edge)
+            return [pane, rate((y - r.bottom + edge) / edge)];
+          return null;
+        }
+        const normal = document.querySelector?.(NORMAL);
+        if (!normal || !overflows(normal) || normal.scrollTop <= 0) return null;
+        const r = normal.getBoundingClientRect();
+        return x >= r.left && x <= r.right && y < r.top && y >= r.top - EDGE
+          ? [normal, -FAST]
+          : null;
+      };
       const dragOver = (input: Event) => {
         const event = input as DragEvent;
-        const pane = (event.target as Element | null)?.closest?.(
-          'zen-workspace[active="true"] .zen-workspace-pinned-tabs-section'
-        );
-        if (
-          !active() ||
-          !pane ||
-          !event.dataTransfer?.types.length ||
-          pane.scrollHeight <= pane.clientHeight
-        ) {
+        const scroll =
+          active() && event.dataTransfer?.types.length
+            ? edgeScroll(event)
+            : null;
+        if (!scroll) {
           stopDrag();
           return;
         }
-        const r = pane.getBoundingClientRect(),
-          edge = Math.min(40, r.height / 3);
-        if (
-          event.clientX < r.left ||
-          event.clientX > r.right ||
-          event.clientY < r.top ||
-          event.clientY > r.bottom
-        ) {
-          stopDrag();
-          return;
-        }
-        dragSpeed =
-          event.clientY < r.top + edge
-            ? -0.45
-            : event.clientY > r.bottom - edge
-              ? 0.45
-              : 0;
-        if (!dragSpeed) {
-          stopDrag();
-          return;
-        }
-        dragPane = pane;
+        [dragPane, dragSpeed] = scroll;
         if (!dragFrame) dragFrame = requestAnimationFrame(tick);
       };
+      // dragover recomputes the zone; only leaving the window needs a stop here.
       const dragLeave = (input: Event) => {
-        const event = input as DragEvent;
-        if (dragPane && !dragPane.contains(event.relatedTarget as Node | null))
-          stopDrag();
+        if (dragPane && !(input as DragEvent).relatedTarget) stopDrag();
       };
       const events: [string, EventListener][] = [
         ["TabSelect", reveal],
@@ -162,7 +200,8 @@ declare const gBrowser: { selectedTab: Element };
         ["blur", stopDrag],
       ];
       for (const [name, fn] of events) window.addEventListener(name, fn, true);
-      shared = {
+      const created: SharedSectionScrolling = {
+        version,
         owners,
         release(owner: object) {
           owners.delete(owner);
@@ -171,12 +210,11 @@ declare const gBrowser: { selectedTab: Element };
           stopDrag();
           for (const [name, fn] of events)
             window.removeEventListener(name, fn, true);
-          if (window[key] === shared) delete window[key];
+          if (window[key] === created) delete window[key];
         },
       };
-      window[key] = shared;
+      window[key] = created;
+      return created;
     }
-    shared.owners.set(owner, media);
-    return () => shared.release(owner);
   }
 })();
