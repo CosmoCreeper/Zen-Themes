@@ -161,8 +161,12 @@
    * and folders keep Zen's own layout, labels, spacing and backgrounds.
    */
   @media (-moz-pref("uc.pins.legacy-layout")) {
+    /* Only the folders' own group start is left to Zen in native style, not
+       the pinned section's (space-fake-collapsible-start). */
     .zen-tab-group-start:not(
-      :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+      :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+        zen-folder
+        *
     ) {
       display: none;
     }
