@@ -221,6 +221,44 @@
             width: 100% !important;
           }
         }
+
+        /*
+         * Fallback for the orient="vertical" quirk (e.g. after toggling
+         * compact mode). xul.css has
+         * [orient="vertical"] { flex-direction: column !important; },
+         * a UA !important rule that mods can't override, so the flex
+         * row-wrap above collapses into a single column. Use a grid instead,
+         * which doesn't depend on flex-direction. dist/patches.uc.mjs removes
+         * the attribute, but that only runs with Sine; Zen's built-in mod
+         * manager only loads this stylesheet.
+         */
+        &[orient="vertical"] {
+          display: grid !important;
+          /* the section must stay as tall as its rows (folders included) */
+          flex-shrink: 0 !important;
+          height: auto !important;
+          max-height: none !important;
+          min-height: min-content !important;
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(var(--tab-pinned-min-width-expanded), 1fr)
+          ) !important;
+
+          @media (-moz-pref("uc.pins.grid-count")) {
+            grid-template-columns: repeat(
+              var(--mod-superpins-pins-grid-count),
+              minmax(var(--tab-pinned-min-width-expanded), 1fr)
+            ) !important;
+          }
+
+          & > .tabbrowser-tab {
+            width: auto !important;
+          }
+
+          & > :is(zen-folder, tab-group) {
+            grid-column: 1 / -1;
+          }
+        }
       }
 
       @media (-moz-pref("uc.pins.grid-count")) {
