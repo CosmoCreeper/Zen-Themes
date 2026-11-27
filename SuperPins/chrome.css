@@ -153,15 +153,32 @@
   }
 
   /* Enables legacy layout for pinned tabs (icon only in grid) */
+  /*
+   * "Style of pinned folders" = "Zen default" (uc.pins.folder-style = native):
+   * Zen writes dropdown prefs as attributes on a hidden #theme-SuperPins
+   * element, so rules that would reach into pinned folders are excluded with
+   * :not(:root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) ...)
+   * and folders keep Zen's own layout, labels, spacing and backgrounds.
+   */
   @media (-moz-pref("uc.pins.legacy-layout")) {
-    .zen-tab-group-start {
+    /* Only the folders' own group start is left to Zen in native style, not
+       the pinned section's (space-fake-collapsible-start). */
+    .zen-tab-group-start:not(
+      :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+        zen-folder
+        *
+    ) {
       display: none;
     }
 
     #navigator-toolbox[zen-sidebar-expanded="true"] {
       /* disable icon shift when tab was renamed */
       .zen-workspace-pinned-tabs-section
-        .tabbrowser-tab
+        .tabbrowser-tab:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
         > .tab-stack
         > .tab-content
         > .tab-icon-stack {
@@ -169,7 +186,11 @@
       }
 
       #tabbrowser-tabs,
-      .tabbrowser-tab[zen-pinned-changed="true"]:not([zen-essential])
+      .tabbrowser-tab[zen-pinned-changed="true"]:not([zen-essential]):not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
         > .tab-stack
         > .tab-content
         > .tab-icon-stack {
@@ -183,7 +204,11 @@
           zen-folder .tab-group-label-container[zen-dragtarget]
         )
       ) {
-        .tabbrowser-tab[pinned] {
+        .tabbrowser-tab[pinned]:not(
+            :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+              zen-folder
+              *
+          ) {
           .tab-close-button,
           .tab-reset-button,
           .tab-reset-pin-button,
@@ -203,7 +228,11 @@
         )
       ) {
         &,
-        zen-folder > .tab-group-container {
+        zen-folder:not(
+            :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+              *
+          )
+          > .tab-group-container {
           display: flex !important;
           flex-flow: row wrap !important;
 
@@ -249,7 +278,11 @@
         )
       ) {
         &,
-        zen-folder > .tab-group-container {
+        zen-folder:not(
+            :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+              *
+          )
+          > .tab-group-container {
           grid-template-columns: repeat(
             auto-fit,
             minmax(var(--tab-pinned-min-width-expanded), auto)
@@ -278,7 +311,10 @@
       )
     ) {
       &:has(> :nth-child(3)),
-      zen-folder > .tab-group-container:has(> :nth-child(3)) {
+      zen-folder:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+        )
+        > .tab-group-container:has(> :nth-child(3)) {
         position: relative !important;
         overflow: visible !important;
         gap: 3px !important;
@@ -296,7 +332,11 @@
         padding-bottom: 25px !important;
       }
 
-      .tabbrowser-tab {
+      .tabbrowser-tab:not(
+        :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+          zen-folder
+          *
+      ) {
         --toolbarbutton-inner-padding: 0;
 
         &[aria-hidden="true"] {
@@ -304,7 +344,11 @@
         }
       }
 
-      .tab-icon-stack {
+      .tab-icon-stack:not(
+        :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+          zen-folder
+          *
+      ) {
         margin-left: 50% !important;
         transform: translateX(-50%) !important;
       }
@@ -317,7 +361,10 @@
         margin: auto !important;
       }
 
-      zen-folder > .tab-group-container:has(> :nth-child(3)) {
+      zen-folder:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+        )
+        > .tab-group-container:has(> :nth-child(3)) {
         margin-inline-start: 14px !important;
 
         & > * {
@@ -326,7 +373,10 @@
         }
       }
 
-      zen-folder[collapsed] .tab-group-container {
+      zen-folder[collapsed]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+        )
+        .tab-group-container {
         display: none !important;
       }
     }
@@ -497,8 +547,17 @@
       )
     ) {
       /* background color of pinned tabs in a normal state (not hovered/selected) */
-      .tabbrowser-tab[pinned] .tab-stack .tab-background,
-      zen-folder > .tab-group-label-container::before {
+      .tabbrowser-tab[pinned]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
+        .tab-stack
+        .tab-background,
+      zen-folder:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+        )
+        > .tab-group-label-container::before {
         background-color: color-mix(
           in srgb,
           white var(--pins-bg-percentage),
@@ -507,8 +566,17 @@
       }
 
       /* background color when hovering */
-      .tabbrowser-tab[pinned]:hover .tab-stack .tab-background,
-      zen-folder > .tab-group-label-container:hover::before {
+      .tabbrowser-tab[pinned]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        ):hover
+        .tab-stack
+        .tab-background,
+      zen-folder:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+        )
+        > .tab-group-label-container:hover::before {
         background-color: color-mix(
           in srgb,
           white calc(var(--pins-bg-percentage) + 3%),
@@ -519,8 +587,20 @@
       /* background color when selected
        * folder selection doesn't work in the same way
        */
-      .tabbrowser-tab[pinned][selected="true"] .tab-stack .tab-background,
-      .tabbrowser-tab[pinned][multiselected="true"] .tab-stack .tab-background {
+      .tabbrowser-tab[pinned][selected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
+        .tab-stack
+        .tab-background,
+      .tabbrowser-tab[pinned][multiselected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
+        .tab-stack
+        .tab-background {
         background-color: color-mix(
           in srgb,
           white calc(var(--pins-bg-percentage) + 16%),
@@ -529,8 +609,18 @@
       }
 
       /* background color when selected and hovering */
-      .tabbrowser-tab[pinned][selected="true"]:hover .tab-stack .tab-background,
-      .tabbrowser-tab[pinned][multiselected="true"]:hover
+      .tabbrowser-tab[pinned][selected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        ):hover
+        .tab-stack
+        .tab-background,
+      .tabbrowser-tab[pinned][multiselected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        ):hover
         .tab-stack
         .tab-background {
         background-color: color-mix(
@@ -570,10 +660,18 @@
   }
 
   @media (-moz-pref("uc.superpins.border.pins")) {
-    .tabbrowser-tab[pinned]:not([zen-essential="true"])
+    .tabbrowser-tab[pinned]:not([zen-essential="true"]):not(
+        :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+          zen-folder
+          *
+      )
       .tab-stack
       .tab-background,
-    .zen-workspace-pinned-tabs-section .tab-group-label-container::before {
+    .zen-workspace-pinned-tabs-section
+      zen-folder:not(
+        :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"]) *
+      )
+      > .tab-group-label-container::before {
       border: var(--superpins-tabs-border) !important;
     }
   }
@@ -644,7 +742,12 @@
   }
 
   @media (-moz-pref("uc.pinned.height")) {
-    .zen-workspace-pinned-tabs-section .tabbrowser-tab {
+    .zen-workspace-pinned-tabs-section
+      .tabbrowser-tab:not(
+        :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+          zen-folder
+          *
+      ) {
       height: var(--pins-height);
     }
   }
@@ -813,12 +916,22 @@
         zen-folder .tab-group-label-container[zen-dragtarget]
       )
     ) {
-      .tabbrowser-tab[pinned][selected="true"] .tab-stack .tab-background {
+      .tabbrowser-tab[pinned][selected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        )
+        .tab-stack
+        .tab-background {
         background-color: var(--mod-superpins-pins-active-bg) !important;
         opacity: 1 !important;
       }
 
-      .tabbrowser-tab[pinned][selected="true"]:hover
+      .tabbrowser-tab[pinned][selected="true"]:not(
+          :root:has(> body > #theme-SuperPins[uc-pins-folder-style="native"])
+            zen-folder
+            *
+        ):hover
         .tab-stack
         .tab-background {
         opacity: 0.8 !important;

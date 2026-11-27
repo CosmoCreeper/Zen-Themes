@@ -132,6 +132,18 @@
     "type": "checkbox"
   },
   {
+    "property": "uc.pins.folder-style",
+    "label": "Style of pinned folders and the tabs inside them",
+    "type": "dropdown",
+    "placeholder": "SuperPins",
+    "options": [
+      {
+        "label": "Zen default (SuperPins leaves folders untouched)",
+        "value": "native"
+      }
+    ]
+  },
+  {
     "property": "uc.pins.bg",
     "label": "Adds a background to the pinned tabs",
     "type": "checkbox"
