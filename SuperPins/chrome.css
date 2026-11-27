@@ -326,7 +326,19 @@
         }
       }
 
-      zen-folder[collapsed] .tab-group-container {
+      zen-folder[collapsed]:not([has-active]) .tab-group-container {
+        display: none !important;
+      }
+
+      /*
+       * Collapsing a folder while one of its tabs is selected keeps that tab
+       * visible (has-active / folder-active). Zen hides the other items by
+       * animating their height to 0, but in the grid they would still take
+       * up cells, so hide them for real and keep only the active ones.
+       */
+      zen-folder[collapsed][has-active]
+        > .tab-group-container
+        > :not([folder-active], :has([folder-active])) {
         display: none !important;
       }
     }
