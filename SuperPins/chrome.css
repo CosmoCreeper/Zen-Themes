@@ -190,6 +190,43 @@
           .tab-label-container {
             display: none !important;
           }
+
+          /*
+           * The audio button sits next to the centered icon, outside the tile.
+           * Hide it and use Zen's own animated notes (as on Essentials in
+           * Glance) to show that the tab is playing sound.
+           */
+          .tab-audio-button {
+            display: none !important;
+          }
+
+          /* On hover, show it small in the tile's corner to mute/unmute. */
+          &:hover:is([soundplaying], [muted], [activemedia-blocked]) {
+            .tab-content {
+              position: relative !important;
+            }
+
+            .tab-audio-button {
+              display: flex !important;
+              position: absolute !important;
+              top: 2px !important;
+              inset-inline-end: 2px !important;
+              margin: 0 !important;
+            }
+          }
+
+          /* Also hidden with reduced motion, like Zen does. */
+          @media not (-moz-pref("uc.pins.hide-media-notes")) {
+            @media (prefers-reduced-motion: no-preference) {
+              &[soundplaying]:not([muted]) .zen-media-notes {
+                display: block !important;
+                left: 50% !important;
+                width: 110% !important;
+                translate: -50% 0 !important;
+                --zen-media-notes-animation: zen-note-sprite;
+              }
+            }
+          }
         }
       }
     }

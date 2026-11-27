@@ -195,6 +195,11 @@
     "type": "string"
   },
   {
+    "property": "uc.pins.hide-media-notes",
+    "label": "Hide the animated notes on pinned tabs that are playing sound (legacy layout)",
+    "type": "checkbox"
+  },
+  {
     "property": "uc.tabs.strikethrough-on-pending",
     "label": "Adds a strikethrough effect on unloaded tabs",
     "type": "checkbox"
